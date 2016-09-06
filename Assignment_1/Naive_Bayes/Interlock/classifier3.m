@@ -70,8 +70,8 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
    for i = m1:length(Y1),
     x = [Y1(i,1)  Y1(i,2)];        % x is 1x2
      x = x';
-     g1 = (-1/2)*(x' * sigma1 * x - (2*(mean1)'*sigma1*x) + (mean1)'*sigma1*mean1);
-     g2 = (-1/2)*(x' * sigma2 * x - (2*(mean2)'*sigma2*x) + (mean2)'*sigma2*mean2);
+     g1 = (-1/2)*(x' * sigma1 * x - (2*(mean1)'*sigma1*x) + (mean1)'*sigma1*mean1) - log(det1)/2  ;
+     g2 = (-1/2)*(x' * sigma2 * x - (2*(mean2)'*sigma2*x) + (mean2)'*sigma2*mean2) - log(det2)/2  ;
     
      a = [g1 g2];
      a = max(a);

@@ -1,4 +1,4 @@
-function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier2(X,Y,Z)
+function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier2(X,Y,Z,A)
    
    m1 = 0.75 * length(X);
    m2 = 0.75 * length(Y);

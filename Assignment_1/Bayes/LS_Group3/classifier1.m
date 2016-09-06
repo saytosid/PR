@@ -19,7 +19,7 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier1(X,Y,Z)
    sigma = pinv(sigma);
    sigma
    mean1 = (mean(X))';
-   mean2 = (mean(Y))';
+   mean2 = (mean(Y))';  %2x1
    mean3 = (mean(Z))';
   
    w12 = sigma * (mean1 - mean2);
@@ -42,79 +42,78 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier1(X,Y,Z)
    %% hcngaes are nade Ctrl+Z
 
    for i = m1:length(X1),
-     x = [X1(i,1) ; X1(i,2)];
-     if (w12)'*(x-x12) > 0 ,
-        if (w13)'*(x-x13) > 0,      %1> 3>
-          plot(x(1),x(2),'g.');
+     x = [X1(i,1)  X1(i,2)];
+     g1 = sigma1 * mean1 * x + (-1/2) * sigma1 * (mean1) * mean1';
+     g2 = sigma2 * mean2 * x + (-1/2) * sigma2 * (mean2) * mean2';
+     g3 = sigma3 * mean3 * x + (-1/2) * sigma3 * (mean3) * mean3';
+     a = [g1 g2 g3];
+     disp('here')
+     a = max(a);
+     if a == g1,
+        plot(x(1),x(2),'g');
           hold on;
-          tc1 = tc1 + 1;
-        else,
-          plot(x(1),x(2),'m.');       %1> 3< 
+          ++tc1;
+     end;     
+     if a == g2,
+        plot(x(1),x(2),'b');
           hold on;
-          tp3 = tp3 + 1;
-        end;
-     else
-        if (w23)'*(x-x23) > 0,       %1< 3>
-          plot(x(1),x(2),'b.');
+          ++tp2;
+      end;    
+      if a == g3,
+        plot(x(1),x(2),'m');
           hold on;
-          tp2 = tp2 + 1;
-        else,
-          plot(x(1),x(2),'m.');
-          hold on;
-          tp3 = tp3 + 1;
-        end;
-     end; 
-   end;    
+          ++tp3;
+     end;     
+   end;
 
-   for i = m2:length(Y1),
-     y = [Y1(i,1) ; Y1(i,2)];
-     if (w12)'*(y-x12) > 0 ,
-        if (w13)'*(y-x13) > 0,      %1> 3>
-          plot(y(1),y(2),'g.');
+   for i = m1:length(Y1),
+     x = [Y1(i,1)  Y1(i,2)];
+     g1 = sigma1 * mean1 * x + (-1/2) * sigma1 * (mean1) * mean1';
+     g2 = sigma2 * mean2 * x + (-1/2) * sigma2 * (mean2) * mean2';
+     g3 = sigma3 * mean3 * x + (-1/2) * sigma3 * (mean3) * mean3';
+     a = [g1 g2 g3];
+     a = max(a);
+     if a == g1,
+        plot(x(1),x(2),'g');
           hold on;
-          tp1 = tp1 + 1;
-        else,
-          plot(y(1),y(2),'m.');       %1> 3< 
+          ++tp1;
+     end;     
+     if a == g2,
+        plot(x(1),x(2),'b');
           hold on;
-          tp3 = tp3 + 1;
-        end;
-     else
-        if (w23)'*(y-x23) > 0,       %1< 3>
-          plot(y(1),y(2),'b.');
+          ++tc2;
+      end;    
+      if a == g3,
+        plot(x(1),x(2),'m');
           hold on;
-          tc2 = tc2 + 1;
-        else,
-          plot(y(1),y(2),'m.');
-          hold on;
-          tp3 = tp3 + 1;
-        end;
-     end; 
-   end; 
+          ++tp3;
+     end;     
+   end;
 
-   for i = m3:length(Z1),
-     y = [Z1(i,1) ; Z1(i,2)];
-     if (w12)'*(y-x12) > 0 ,
-        if (w13)'*(y-x13) > 0,      %1> 3>
-          plot(y(1),y(2),'g.');
+   for i = m1:length(Z1),
+     x = [Z1(i,1)  Z1(i,2)];
+     g1 = sigma1 * mean1 * x + (-1/2) * sigma1 * (mean1) * mean1';
+     g2 = sigma2 * mean2 * x + (-1/2) * sigma2 * (mean2) * mean2';
+     g3 = sigma3 * mean3 * x + (-1/2) * sigma3 * (mean3) * mean3';
+     a = [g1 g2 g3];
+     a = max(a);
+     if a == g1,
+        plot(x(1),x(2),'g');
           hold on;
-          tp1 = tp1 + 1;
-        else,
-          plot(y(1),y(2),'m.');       %1> 3< 
+          ++tp1;
+     end;     
+     if a == g2,
+        plot(x(1),x(2),'b');
           hold on;
-          tc3 = tc3 + 1;
-        end;
-     else
-        if (w23)'*(y-x23) > 0,       %1< 3>
-          plot(y(1),y(2),'b.');
+          ++tp2;
+      end;    
+      if a == g3,
+        plot(x(1),x(2),'m');
           hold on;
-          tp2 = tp2 + 1;
-        else,
-          plot(y(1),y(2),'m.');
-          hold on;
-          tc3 = tc3 + 1;
-        end;
-     end; 
-   end;         
+          ++tc3;
+     end;     
+   end;     
+
    
    tp1 = tp1 + tc1;
    tp2 = tp2 + tc2;
