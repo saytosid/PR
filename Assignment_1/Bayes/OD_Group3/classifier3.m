@@ -20,18 +20,6 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z,A)
    sigma3 = cov(Z);
    sigma4 = cov(A);
    
-   sigma1(1,2) = 0;
-   sigma1(2,1) = 0;
-   
-   sigma2(1,2) = 0;
-   sigma2(2,1) = 0;
-
-   sigma3(1,2) = 0;
-   sigma3(2,1) = 0;
-
-   sigma4(1,2) = 0;
-   sigma4(2,1) = 0;
-   
    det1 = det(sigma1);
    det2 = det(sigma2);
    det3 = det(sigma3);
@@ -194,7 +182,5 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z,A)
    disp(tp1);
    disp(tp2);
    disp(tp3);
-   disp(tp4);
- 
-  
+   disp(tp4); 
 end   	

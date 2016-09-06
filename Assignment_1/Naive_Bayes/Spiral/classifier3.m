@@ -2,7 +2,10 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
    
    m1 = 0.75 * length(X);
    m2 = 0.75 * length(Y);
-   %m3 = 0.75 * length(Z);	
+   %m3 = 0.75 * length(Z);
+
+   m1 = floor(m1);
+   m2 = floor(m2);	
    
    X1 = X;
    Y1 = Y;
@@ -50,7 +53,8 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
      x = [X1(i,1)  X1(i,2)];        % x is 1x2
      x = x';
      g1 = (-1/2)*(x' * sigma1 * x - (2*(mean1)'*sigma1*x) + (mean1)'*sigma1*mean1) - log(det1)/2  ;
-     g2 = (-1/2)*(x' * sigma2 * x - (2*(mean2)'*sigma2*x) + (mean2)'*sigma2*mean2) - log(det2)/2  ;    
+     g2 = (-1/2)*(x' * sigma2 * x - (2*(mean2)'*sigma2*x) + (mean2)'*sigma2*mean2) - log(det2)/2  ;
+     
      a = [g1 g2];
     a = max(a);
      if a == g1,
@@ -66,11 +70,12 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
           
    end; 
 
-   for i = m1:length(Y1),
+   for i = m2:length(Y1),
     x = [Y1(i,1)  Y1(i,2)];        % x is 1x2
      x = x';
      g1 = (-1/2)*(x' * sigma1 * x - (2*(mean1)'*sigma1*x) + (mean1)'*sigma1*mean1) - log(det1)/2  ;
      g2 = (-1/2)*(x' * sigma2 * x - (2*(mean2)'*sigma2*x) + (mean2)'*sigma2*mean2) - log(det2)/2  ;
+    
      a = [g1 g2];
      a = max(a);
      if a == g1,

@@ -2,12 +2,15 @@ function [tc1,tc2,tp1,tp2] = classifier2(X,Y)
    
    m1 = 0.75 * length(X);
    m2 = 0.75 * length(Y);
+
+   m1 = floor(m1);
+   m2 = floor(m2);
    
    X1 = X;
    Y1 = Y;
 
-   X = X(1:m1,:);        %training data
-   Y = Y(1:m2,:);
+   X = X(1:floor(m1),:);        %training data
+   Y = Y(1:floor(m2),:);
 
    A = [X;Y];
    sigma = cov(A);
@@ -25,7 +28,7 @@ function [tc1,tc2,tp1,tp2] = classifier2(X,Y)
    tp1 = 0;
    tp2 = 0;
    
-   for i = m1:length(X1),
+   for i = floor(m1):length(X1),
      x = [X1(i,1) ; X1(i,2)];
      if (w12)'*(x-x12) > 0 ,
           plot(x(1),x(2),'g');
@@ -38,7 +41,7 @@ function [tc1,tc2,tp1,tp2] = classifier2(X,Y)
      end; 
    end;    
 
-   for i = m2:length(Y1),
+   for i = floor(m2):length(Y1),
      y = [Y1(i,1) ; Y1(i,2)];
      if (w12)'*(y-x12) > 0 ,
           plot(y(1),y(2),'g');

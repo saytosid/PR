@@ -43,7 +43,7 @@ function [tc1,tc2,tp1,tp2] = classifier1(X,Y)
    %tp3 = 0;
    %figure(1);
 
-   length(X1) - m1 +1
+   
 
    for i = m1:length(X1),
      x = [X1(i,1) ; X1(i,2)];

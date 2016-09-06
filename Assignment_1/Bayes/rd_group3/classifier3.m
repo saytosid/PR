@@ -4,6 +4,10 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
    m2 = 0.75 * length(Y);
    m3 = 0.75 * length(Z);	
    
+   m1 = floor(m1);
+   m2 = floor(m2);
+   m3 = floor(m3);
+
    X1 = X;
    Y1 = Y;
    Z1 = Z;
@@ -27,15 +31,13 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
    mean1 = (mean(X))';                  % X is 1x2
    mean2 = (mean(Y))';                  % mean1 is 2x1
    mean3 = (mean(Z))';                  %done
-  
-   
+    
    tc1 = 0;
    tc2 = 0;
    tc3 = 0;
    tp1 = 0;
    tp2 = 0;
    tp3 = 0;
-
    figure(7); 
 
    for i = m1:length(X1),
@@ -63,7 +65,7 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
      end;     
    end; 
 
-   for i = m1:length(Y1),
+   for i = m2:length(Y1),
     x = [Y1(i,1)  Y1(i,2)];        % x is 1x2
      x = x';
      g1 = (-1/2)*(x' * sigma1 * x - (2*(mean1)'*sigma1*x) + (mean1)'*sigma1*mean1) - log(det1)/2  ;

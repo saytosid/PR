@@ -61,7 +61,7 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
      end;     
    end; 
 
-   for i = m1:length(Y1),
+   for i = m2:length(Y1),
     x = [Y1(i,1)  Y1(i,2)];        % x is 1x2
      x = x';
      g1 = (-1/2)*(x' * sigma1 * x - (2*(mean1)'*sigma1*x) + (mean1)'*sigma1*mean1) - log(det1)/2  ;
