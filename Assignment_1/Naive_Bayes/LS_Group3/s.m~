@@ -1,0 +1,14 @@
+function [] = s()
+	data1 = load('Class1.txt');
+	m = length(data1);
+	
+	for i = 1:m,
+	    if (data1(i,1)*4) + (data1(i,2)*7 - 28) > 0,
+		plot(data1(i,1),data1(i,2),'g');
+	    else	
+		plot(data1(i,1),data1(i,2),'r');
+            end
+	    hold on;	
+        end
+
+end   	

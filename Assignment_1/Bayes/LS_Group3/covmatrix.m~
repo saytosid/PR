@@ -1,0 +1,28 @@
+function [] = classifier(X,Y,Z)
+   m1 = length(X);
+   m2 = length(Y);
+   m3 = length(Z);
+   
+   m1 = 0.75 * m1;
+   m2 = 0.75 * m2;
+   m3 = 0.75 * m3;	
+   
+   X = X(1:m1,:);
+   Y = Y(1:m2,:);
+   Z = Z(1:m3,:);
+   
+   sigma1 = cov(X);
+   sigma2 = cov(Y);
+   sigma3 = cov(Z);
+   sigma = (sigma1 + sigma2 + sigma3)/3;
+   sigma = pinv(sigma);
+   
+   mean1 = (mean(X))';
+   mean2 = (mean(Y))';
+   mean3 = (mean(Z))';
+  
+   w12 = sigma * (mean1 - mean2);
+   x12 = (mean1 + mean2)/2;
+   
+   	
+end   	
