@@ -35,12 +35,13 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
     a = [g1 g2];
     a = max(a);
      if a == g1,
-        plot(x(1),x(2),'g');
+        p1=plot(x(1),x(2),'g');
           hold on;
           ++tc1;
      end;     
      if a == g2,
-        plot(x(1),x(2),'b');
+        p2=plot(x(1),x(2),'b');
+        legend([p1,p2],'Class1','Class2');
           hold on;
           ++tp2;
       end;             
@@ -66,6 +67,15 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
       end;                
    end;  
 
+   
+
+   tp1 += tc1;
+   tp2 += tc2;
+   
+   disp(tc1);
+   disp(tc2); 
+   disp(tp1);
+   disp(tp2);
    %plot
    pts = [0 0];
    for i = -2:0.1:3,
@@ -91,13 +101,8 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
           
       end;        
    end;
-
-   tp1 += tc1;
-   tp2 += tc2;
-   
-   disp(tc1);
-   disp(tc2); 
-   disp(tp1);
-   disp(tp2);
+   xlabel('x coordinate');
+   ylabel('y coordinate');
+   title('Classifier3_interlock');
 end;   
 

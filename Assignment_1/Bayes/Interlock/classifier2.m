@@ -34,12 +34,13 @@ function [tc1,tc2,tp1,tp2] = classifier2(X,Y)
      a = [g1 g2];
      a = max(a);
      if a == g1,
-        plot(x(1),x(2),'g');
+        p1=plot(x(1),x(2),'g');
           hold on;
           ++tc1;
      end;     
      if a == g2,
-        plot(x(1),x(2),'b');
+        p2=plot(x(1),x(2),'b');
+        legend([p1 p2],'Class1','Class2');
           hold on;
           ++tp2;
       end;       
@@ -101,4 +102,7 @@ function [tc1,tc2,tp1,tp2] = classifier2(X,Y)
    %w12'(1,2)*x12(2,1)/w12'(1,2)
    %w12'(1,1)/w12'(1,2)
    %w12
+   xlabel('x coordinate');
+   ylabel('y coordinate');
+   title('Classifier2_interlock');
 end   	
