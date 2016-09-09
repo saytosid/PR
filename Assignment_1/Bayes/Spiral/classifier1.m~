@@ -68,7 +68,7 @@ function [tc1,tc2,tp1,tp2] = classifier1(X,Y)
      end;     
      if a == g2,
         p2=plot(x(1),x(2),'b','MarkerSize',10);
-        legend([p1,p2],'Class1','Class2');
+        %legend([p1,p2],'Class1','Class2');
           hold on;
           ++tp2;
       end;       
@@ -100,7 +100,7 @@ function [tc1,tc2,tp1,tp2] = classifier1(X,Y)
    disp(tc2)
    disp(tp1)
    disp(tp2)
-<<<<<<< HEAD
+
    %plotting region
    % pts = [-2:0.32:3;-1.5:0.2:1.5]';
    pts = [0 0];
@@ -125,16 +125,10 @@ function [tc1,tc2,tp1,tp2] = classifier1(X,Y)
           hold on;
       end;        
    end;
-   xlabel('x coordinate');
-   ylabel('y coordinate');
-   title('Classifier1_ring');
-=======
-
-   
 
    xlabel('x coordinate');
    ylabel('y coordinate');
    title('Classifier1 spiral');
    legend([p1,p2],'Class1','Class2');
->>>>>>> de6fce7ab9689e6e29aa054c4e58c6c628312644
+
 end   	

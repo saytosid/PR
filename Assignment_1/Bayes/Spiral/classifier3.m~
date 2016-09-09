@@ -29,10 +29,9 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
    tp2 = 0;
    figure(7); 
 
-<<<<<<< HEAD
+
    m1 = m1 + 1;
    m2 = m2 + 1;
-=======
       %plotting region
    % pts = [-2:0.32:3;-1.5:0.2:1.5]';
    pts = [0 0];
@@ -58,7 +57,6 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
       end;        
    end;
    % Testing data
->>>>>>> de6fce7ab9689e6e29aa054c4e58c6c628312644
 
    for i = m1:length(X1),
      x = [X1(i,1)  X1(i,2)];        % x is 1x2

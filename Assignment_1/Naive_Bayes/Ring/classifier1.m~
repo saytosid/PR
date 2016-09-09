@@ -22,10 +22,6 @@ function [tc1,tc2,tp1,tp2] = classifier1(X,Y)
    mean1 = (mean(X))';
    mean2 = (mean(Y))';
 
-   w12 = sigma * (mean1 - mean2);
-   x12 = (mean1 + mean2)/2;
-
-   
    tc1 = 0;
    tc2 = 0;
   

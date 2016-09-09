@@ -38,10 +38,11 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
    tp1 = 0;
    tp2 = 0;
    tp3 = 0;
+   m = length(X1) + length(Y1) + length(Z1);
 
-   Pc1 = log(m1/length(X1));
-   Pc2 = log(m2/length(Y1));
-   Pc3 = log(m3/length(Z1));
+   Pc1 = log(m1/m);
+   Pc2 = log(m2/m);
+   Pc3 = log(m3/m);
    figure(7); 
 
    m1 = m1 + 1;

@@ -20,8 +20,10 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
    mean1 = (mean(X))';                  % X is 1x2
    mean2 = (mean(Y))';                  % mean1 is 2x1
 
-   Pc1 = log(m1/length(X1));
-   Pc2 = log(m2/length(Y1));
+   m = length(X1) + length(Y1);
+
+   Pc1 = log(m1/m);
+   Pc2 = log(m2/m);
  
    tc1 = 0;
    tc2 = 0;
