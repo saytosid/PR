@@ -24,7 +24,11 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
    tc2 = 0;
    tp1 = 0;
    tp2 = 0;
-   figure(7); 
+   figure(7);
+
+   m1 = m1 + 1;
+   m2 = m2 + 1;
+   
 
    for i = m1:length(X1),
      x = [X1(i,1)  X1(i,2)];        % x is 1x2

@@ -25,6 +25,7 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier1(X,Y,Z,A)
    a = (sigma(1,1)+sigma(2,2))/2;
    sigma(1,1) = a;
    sigma(2,2) = a;
+   sigma
    sigma = pinv(sigma);
    mean1 = (mean(X))';
    mean2 = (mean(Y))';
@@ -39,7 +40,12 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier1(X,Y,Z,A)
    tp2 = 0;
    tp3 = 0;
    tp4 = 0;
-   %figure(1);
+
+   m1 = m1 + 1;
+   m2 = m2 + 1;
+   m3 = m3 + 1;
+   m4 = m4 + 1;
+   figure(1);
 
    %% change from here
    for i = m1:length(X1),

@@ -58,6 +58,11 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z,A)
 
    figure(7); 
 
+   m1 = m1 + 1;
+   m2 = m2 + 1;
+   m3 = m3 + 1;
+   m4 = m4 + 1;
+
    for i = m1:length(X1),
      x = [X1(i,1)  X1(i,2)];        % x is 1x2
      x = x';

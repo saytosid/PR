@@ -24,6 +24,10 @@ function [tc1,tc2,tp1,tp2] = classifier2(X,Y)
    
    tp1 = 0;
    tp2 = 0;
+
+   m1 = m1 + 1;
+   m2 = m2 + 1;
+  
    
    for i = m1:length(X1),
      x = [X1(i,1) ; X1(i,2)];

@@ -27,29 +27,29 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier1(X,Y,Z)
    mean2 = (mean(Y))';
    mean3 = (mean(Z))';
   
-   w12 = sigma * (mean1 - mean2);
-   x12 = (mean1 + mean2)/2;
-
-   w23 = sigma * (mean2 - mean3);
-   x23 = (mean2 + mean3)/2;
-
-   w13 = sigma * (mean1 - mean3);
-   x13 = (mean1 + mean3)/2;	
-   
    tc1 = 0;
    tc2 = 0;
    tc3 = 0;
    tp1 = 0;
    tp2 = 0;
    tp3 = 0;
-   %figure(1);
+
+   Pc1 = log(m1/length(X1));
+   Pc2 = log(m2/length(Y1));
+   Pc3 = log(m3/length(Z1));
+   figure(1);
+
+   m1 = m1 + 1;
+   m2 = m2 + 1;
+   m3 = m3 + 1;
+  
 
    for i = m1:length(X1),
      x = [X1(i,1) ; X1(i,2)];
      
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
-     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3;
+     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1 + Pc1;
+     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2 + Pc2;
+     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3 + Pc3;
      a = [g1 g2 g3];
      a = max(a);
      if a == g1,
@@ -71,9 +71,9 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier1(X,Y,Z)
 
    for i = m2:length(Y1),
      x = [Y1(i,1) ; Y1(i,2)];
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
-     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3;
+     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1 + Pc1;
+     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2 + Pc2;
+     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3 + Pc3;
      a = [g1 g2 g3];
      a = max(a);
      if a == g1,
@@ -95,9 +95,9 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier1(X,Y,Z)
 
    for i = m3:length(Z1),
      x = [Z1(i,1) ; Z1(i,2)];
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
-     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3;
+     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1 + Pc1;
+     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2 + Pc2;
+     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3 + Pc3;
      a = [g1 g2 g3];
      a = max(a);
      if a == g1,

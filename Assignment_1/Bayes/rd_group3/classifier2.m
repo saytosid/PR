@@ -29,14 +29,22 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier2(X,Y,Z)
    tp1 = 0;
    tp2 = 0;
    tp3 = 0;
+
+   Pc1 = log(m1/length(X1));
+   Pc2 = log(m2/length(Y1));
+   Pc3 = log(m3/length(Z1));
+
+   m1 = m1 + 1;
+   m2 = m2 + 1;
+   m3 = m3 + 1;
    figure(1);
 
    for i = m1:length(X1),
      x = [X1(i,1) ; X1(i,2)];
      
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
-     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3;
+     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1 + Pc1;
+     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2 + Pc2;
+     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3 + Pc3;
      a = [g1 g2 g3];
      a = max(a);
      if a == g1,
@@ -58,9 +66,9 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier2(X,Y,Z)
 
    for i = m2:length(Y1),
      x = [Y1(i,1) ; Y1(i,2)];
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
-     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3;
+     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1 + Pc1;
+     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2 + Pc2;
+     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3 + Pc3;
      a = [g1 g2 g3];
      a = max(a);
      if a == g1,
@@ -82,9 +90,9 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier2(X,Y,Z)
 
    for i = m3:length(Z1),
      x = [Z1(i,1) ; Z1(i,2)];
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
-     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3;
+     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1 + Pc1;
+     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2 + Pc2;
+     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3 + Pc3;
      a = [g1 g2 g3];
      a = max(a);
      if a == g1,

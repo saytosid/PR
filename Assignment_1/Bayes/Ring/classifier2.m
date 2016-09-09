@@ -16,19 +16,22 @@ function [tc1,tc2,tp1,tp2] = classifier2(X,Y)
    mean1 = (mean(X))';
    mean2 = (mean(Y))';
   
-   w12 = sigma * (mean1 - mean2);
-   x12 = (mean1 + mean2)/2;
- 
    tc1 = 0;
    tc2 = 0;
    
    tp1 = 0;
    tp2 = 0;
+
+   Pc1 = log(m1/length(X1));
+   Pc2 = log(m2/length(Y1));
+
+   m1 = m1 + 1;
+   m2 = m2 + 1;
    
  for i = m1:length(X1),
      x = [X1(i,1) ; X1(i,2)];   
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
+     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1 + Pc1;
+     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2 + Pc2;
      a = [g1 g2];
      a = max(a);
      if a == g1,
@@ -50,8 +53,8 @@ function [tc1,tc2,tp1,tp2] = classifier2(X,Y)
 
    for i = m2:length(Y1),
      x = [Y1(i,1) ; Y1(i,2)];
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;     
+     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1 + Pc1;
+     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2 + Pc2;     
      a = [g1 g2];
      a = max(a);
      if a == g1,
@@ -86,8 +89,8 @@ function [tc1,tc2,tp1,tp2] = classifier2(X,Y)
    end;
    for i = 1:length(pts);
      x = [pts(i,1); pts(i,2)];
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
+     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1 + Pc1;
+     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2 + Pc2;
      
      a = [g1 g2];
      a = max(a);
