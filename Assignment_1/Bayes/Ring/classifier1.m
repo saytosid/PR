@@ -30,7 +30,30 @@ function [tc1,tc2,tp1,tp2] = classifier1(X,Y)
  
    m1 = m1 + 1;
    m2 = m2 + 1;
-  
+  %plotting region
+   % pts = [-2:0.32:3;-1.5:0.2:1.5]';
+   pts = [0 0];
+   for i = -2:0.1:2,
+    for j = -2:0.1:2,
+      pts = [pts;i j];
+    end;
+   end;
+   for i = 1:length(pts);
+     x = [pts(i,1); pts(i,2)];
+     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1 + Pc1;
+     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2 + Pc2;
+     
+     a = [g1 g2];
+     a = max(a);
+     if a == g1,
+        plot(x(1),x(2),'y.');
+          hold on;
+     end;     
+     if a == g2,
+        plot(x(1),x(2),'c.');
+          hold on;
+      end;        
+   end;
 
    for i = m1:length(X1),
      x = [X1(i,1) ; X1(i,2)];   
@@ -40,13 +63,12 @@ function [tc1,tc2,tp1,tp2] = classifier1(X,Y)
      a = max(a);
      if a == g1,
         p1=plot(x(1),x(2),'g','MarkerSize',10);
-        
           hold on;
           ++tc1;
      end;     
      if a == g2,
         p2=plot(x(1),x(2),'b','MarkerSize',10);
-        legend([p1,p2],'Class1','Class2');
+        
           hold on;
           ++tp2;
       end;       
@@ -79,31 +101,9 @@ function [tc1,tc2,tp1,tp2] = classifier1(X,Y)
    disp(tc2)
    disp(tp1)
    disp(tp2)
-   %plotting region
-   % pts = [-2:0.32:3;-1.5:0.2:1.5]';
-   pts = [0 0];
-   for i = -2:0.1:2,
-    for j = -2:0.1:2,
-      pts = [pts;i j];
-    end;
-   end;
-   for i = 1:length(pts);
-     x = [pts(i,1); pts(i,2)];
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1 + Pc1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2 + Pc2;
-     
-     a = [g1 g2];
-     a = max(a);
-     if a == g1,
-        plot(x(1),x(2),'y.');
-          hold on;
-     end;     
-     if a == g2,
-        plot(x(1),x(2),'c.');
-          hold on;
-      end;        
-   end;
+   
    xlabel('x coordinate');
    ylabel('y coordinate');
-   title('Classifier1_ring');
+   title('Classifier1 Ring');
+   % legend([p1,p2],'Class1','Class2');
 end   	

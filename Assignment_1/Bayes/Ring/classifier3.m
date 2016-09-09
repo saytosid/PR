@@ -33,7 +33,30 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
 
    m1 = m1 + 1;
    m2 = m2 + 1;
-
+%plotting region
+   % pts = [-2:0.32:3;-1.5:0.2:1.5]';
+   pts = [0 0];
+   for i = -2:0.1:2,
+    for j = -2:0.1:2,
+      pts = [pts;i j];
+    end;
+   end;
+   for i = 1:length(pts);
+     x = [pts(i,1); pts(i,2)];
+     g1 = (-1/2)*(x' * sigma1 * x - (2*(mean1)'*sigma1*x) + (mean1)'*sigma1*mean1) - log(det1)/2  + Pc1;
+     g2 = (-1/2)*(x' * sigma2 * x - (2*(mean2)'*sigma2*x) + (mean2)'*sigma2*mean2) - log(det2)/2  + Pc2;
+     
+     a = [g1 g2];
+     a = max(a);
+     if a == g1,
+        plot(x(1),x(2),'y.');
+          hold on;
+     end;     
+     if a == g2,
+        plot(x(1),x(2),'c.');
+          hold on;
+      end;        
+   end;
    for i = m1:length(X1),
      x = [X1(i,1)  X1(i,2)];        % x is 1x2
      x = x';
@@ -83,30 +106,7 @@ function [tc1,tc2,tp1,tp2] = classifier3(X,Y)
    disp(tc2); 
    disp(tp1);
    disp(tp2);
-   %plotting region
-   % pts = [-2:0.32:3;-1.5:0.2:1.5]';
-   pts = [0 0];
-   for i = -2:0.1:2,
-    for j = -2:0.1:2,
-      pts = [pts;i j];
-    end;
-   end;
-   for i = 1:length(pts);
-     x = [pts(i,1); pts(i,2)];
-     g1 = (-1/2)*(x' * sigma1 * x - (2*(mean1)'*sigma1*x) + (mean1)'*sigma1*mean1) - log(det1)/2  ;
-     g2 = (-1/2)*(x' * sigma2 * x - (2*(mean2)'*sigma2*x) + (mean2)'*sigma2*mean2) - log(det2)/2  ;
-     
-     a = [g1 g2];
-     a = max(a);
-     if a == g1,
-        plot(x(1),x(2),'y.');
-          hold on;
-     end;     
-     if a == g2,
-        plot(x(1),x(2),'c.');
-          hold on;
-      end;        
-   end;
+   
    xlabel('x coordinate');
    ylabel('y coordinate');
    title('Classifier3 ring');
