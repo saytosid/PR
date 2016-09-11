@@ -39,10 +39,8 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier1(X,Y,Z,A)
    m2 = m2 + 1;
    m3 = m3 + 1;
    m4 = m4 + 1;
-  
-
    figure(1);
-  
+
    %plotting region
    % pts = [-2:0.32:3;-1.5:0.2:1.5]';
    pts = [0 0];

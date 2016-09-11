@@ -29,10 +29,15 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier1(X,Y,Z)
    tp2 = 0;
    tp3 = 0;
    figure(1);
-   
-   %% hcngaes are nade Ctrl+Z
 
-   for i = m1:length(X1),
+   m1 = m1 + 1;
+   m2 = m2 + 1;
+   m3 = m3 + 1;
+
+   
+     
+
+   for i = m1:length(X1),                                     
      x = [X1(i,1) ; X1(i,2)];
      
      g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
@@ -41,17 +46,17 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier1(X,Y,Z)
      a = [g1 g2 g3];
      a = max(a);
      if a == g1,
-        plot(x(1),x(2),'g');
+        p1=plot(x(1),x(2),'g','MarkerSize',10);
           hold on;
           ++tc1;
      end;     
      if a == g2,
-        plot(x(1),x(2),'b');
+        plot(x(1),x(2),'b','MarkerSize',10);
           hold on;
           ++tp2;
       end;    
       if a == g3,
-        plot(x(1),x(2),'m');
+        plot(x(1),x(2),'m','MarkerSize',10);
           hold on;
           ++tp3;
      end;     
@@ -65,17 +70,17 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier1(X,Y,Z)
      a = [g1 g2 g3];
      a = max(a);
      if a == g1,
-        plot(x(1),x(2),'g');
+        plot(x(1),x(2),'g','MarkerSize',10);
           hold on;
           ++tp1;
      end;     
      if a == g2,
-        plot(x(1),x(2),'b');
+        p2=plot(x(1),x(2),'b','MarkerSize',10);
           hold on;
           ++tc2;
       end;    
       if a == g3,
-        plot(x(1),x(2),'m');
+        plot(x(1),x(2),'m','MarkerSize',10);
           hold on;
           ++tp3;
      end;     
@@ -89,17 +94,17 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier1(X,Y,Z)
      a = [g1 g2 g3];
      a = max(a);
      if a == g1,
-        plot(x(1),x(2),'g');
+        plot(x(1),x(2),'g','MarkerSize',10);
           hold on;
           ++tp1;
      end;     
      if a == g2,
-        plot(x(1),x(2),'b');
+        plot(x(1),x(2),'b','MarkerSize',10);
           hold on;
           ++tp2;
       end;    
       if a == g3,
-        plot(x(1),x(2),'m');
+        p3=plot(x(1),x(2),'m','MarkerSize',10);
           hold on;
           ++tc3;
      end;     
@@ -115,4 +120,8 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier1(X,Y,Z)
    disp(tp1)
    disp(tp2)
    disp(tp3)
-end   	
+   xlabel('x coordinate');
+   ylabel('y coordinate');
+   title('Classifier1 LS');
+   legend([p1,p2,p3],'Class1','Class2','Class3');
+end;   	
