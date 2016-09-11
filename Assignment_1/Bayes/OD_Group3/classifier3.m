@@ -63,7 +63,43 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z,A)
    m4 = m4 + 1;
    figure(7); 
 
-   
+   %plotting region
+   % pts = [-2:0.32:3;-1.5:0.2:1.5]';
+   pts = [0 0];
+   for i = -10:0.4:15,
+    for j = -10:0.4:15,
+      pts = [pts;i j];
+    end;
+   end;
+   for i = 1:length(pts);
+     x = [pts(i,1); pts(i,2)];
+     g1 = (-1/2)*(x' * sigma1 * x - (2*(mean1)'*sigma1*x) + (mean1)'*sigma1*mean1) - log(det1)/2  ;
+     g2 = (-1/2)*(x' * sigma2 * x - (2*(mean2)'*sigma2*x) + (mean2)'*sigma2*mean2) - log(det2)/2  ;
+     g3 = (-1/2)*(x' * sigma3 * x - (2*(mean3)'*sigma3*x) + (mean3)'*sigma3*mean3) - log(det3)/2  ;
+     g4 = (-1/2)*(x' * sigma4 * x - (2*(mean4)'*sigma4*x) + (mean4)'*sigma4*mean4) - log(det4)/2  ;
+     a = [g1 g2 g3 g4];
+     a = max(a);
+     if a == g1,
+        p1=plot(x(1),x(2),'y');
+          hold on;
+          % ++tc1;
+     end;     
+     if a == g2,
+        plot(x(1),x(2),'c');
+          hold on;
+          % ++tp2;
+      end;    
+      if a == g3,
+        plot(x(1),x(2),'r');
+          hold on;
+          % ++tp3;
+     end;
+       if a == g4,
+        plot(x(1),x(2),'b');
+          hold on;
+          % ++tp4;
+     end;      
+   end;
 
    for i = m1:length(X1),
      x = [X1(i,1)  X1(i,2)];        % x is 1x2
