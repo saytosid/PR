@@ -32,6 +32,19 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier2(X,Y,Z,W)
    tp3 = 0;
    tp4 = 0;
 
+   t12 = 0;
+   t13 = 0;
+   t14 = 0;
+   t21 = 0;
+   t23 = 0;
+   t24 = 0;
+   t31 = 0;
+   t32 = 0;
+   t34 = 0;
+   t41 = 0;
+   t42 = 0;
+   t43 = 0;
+
    m1 = m1 + 1;
    m2 = m2 + 1;
    m3 = m3 + 1;
@@ -90,19 +103,22 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier2(X,Y,Z,W)
           ++tc1;
      end;     
      if a == g2,
-        plot(x(1),x(2),'b','MarkerSize',10);
+        plot(x(1),x(2),'b');
           hold on;
           ++tp2;
+	  ++t12;
       end;    
       if a == g3,
-        plot(x(1),x(2),'m','MarkerSize',10);
+        plot(x(1),x(2),'m');
           hold on;
           ++tp3;
+	  ++t13;
      end;
        if a == g4,
-        plot(x(1),x(2),'c','MarkerSize',10);
+        plot(x(1),x(2),'c');
           hold on;
           ++tp4;
+	  ++t14;
      end;     
    end;
 
@@ -115,9 +131,10 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier2(X,Y,Z,W)
      a = [g1 g2 g3 g4];
      a = max(a);
      if a == g1,
-        plot(x(1),x(2),'g','MarkerSize',10);
+        plot(x(1),x(2),'g');
           hold on;
           ++tp1;
+	  ++t21;
      end;     
      if a == g2,
         p2=plot(x(1),x(2),'b','MarkerSize',10);
@@ -125,14 +142,16 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier2(X,Y,Z,W)
           ++tc2;
       end;    
       if a == g3,
-        plot(x(1),x(2),'m','MarkerSize',10);
+        plot(x(1),x(2),'m');
           hold on;
           ++tp3;
+	  ++t23;
      end;
        if a == g4,
-        plot(x(1),x(2),'c','MarkerSize',10);
+        plot(x(1),x(2),'c');
           hold on;
           ++tp4;
+	  ++t24;
      end;     
    end;
 
@@ -145,14 +164,16 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier2(X,Y,Z,W)
      a = [g1 g2 g3 g4];
      a = max(a);
      if a == g1,
-        plot(x(1),x(2),'g','MarkerSize',10);
+        plot(x(1),x(2),'g');
           hold on;
           ++tp1;
+	  ++t31;
      end;     
      if a == g2,
-        plot(x(1),x(2),'b','MarkerSize',10);
+        plot(x(1),x(2),'b');
           hold on;
           ++tp2;
+	  ++t32;
       end;    
       if a == g3,
         p3=plot(x(1),x(2),'m','MarkerSize',10);
@@ -160,9 +181,10 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier2(X,Y,Z,W)
           ++tc3;
      end;
        if a == g4,
-        plot(x(1),x(2),'c','MarkerSize',10);
+        plot(x(1),x(2),'c');
           hold on;
           ++tp4;
+	  ++t34;
      end;       
    end;
 
@@ -175,19 +197,22 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier2(X,Y,Z,W)
      a = [g1 g2 g3 g4];
      a = max(a);
      if a == g1,
-        plot(x(1),x(2),'g','MarkerSize',10);
+        plot(x(1),x(2),'g');
           hold on;
           ++tp1;
+	  ++t41;
      end;     
      if a == g2,
-        plot(x(1),x(2),'b','MarkerSize',10);
+        plot(x(1),x(2),'b');
           hold on;
           ++tp2;
+	  ++t42;
       end;    
       if a == g3,
         plot(x(1),x(2),'m','MarkerSize',10);
           hold on;
           ++tp3;
+ 	  ++t43;
      end;
        if a == g4,
         p4=plot(x(1),x(2),'c','MarkerSize',10);
@@ -210,6 +235,19 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier2(X,Y,Z,W)
    disp(tp2)
    disp(tp3)  
    disp(tp4)
+
+   disp(t12)
+   disp(t13)
+   disp(t14)
+   disp(t21)
+   disp(t23)
+   disp(t24)
+   disp(t31)
+   disp(t32)
+   disp(t34)
+   disp(t41)
+   disp(t42)
+   disp(t43)
 
    xlabel('x coordinate');
    ylabel('y coordinate');

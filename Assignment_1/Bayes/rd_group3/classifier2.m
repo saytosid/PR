@@ -30,6 +30,13 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier2(X,Y,Z)
    tp2 = 0;
    tp3 = 0;
 
+   t12 = 0;
+   t13 = 0;
+   t21 = 0;
+   t23 = 0;
+   t31 = 0;
+   t32 = 0;
+
    m = length(X1) + length(Y1) + length(Z1);
 
    Pc1 = log(m1/m);
@@ -154,6 +161,12 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier2(X,Y,Z)
    disp(tp1)
    disp(tp2)
    disp(tp3)
+   disp(t12)
+   disp(t13)
+   disp(t21)
+   disp(t23)
+   disp(t31)
+   disp(t32)
    xlabel('x coordinate');
    ylabel('y coordinate');
    title('Classifier2 Real Data');

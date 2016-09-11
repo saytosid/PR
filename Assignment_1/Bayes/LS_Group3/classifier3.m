@@ -40,8 +40,9 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
    m2 = m2 + 1;
    m3 = m3 + 1;
 
-   plotting region
-   pts = [-2:0.32:3;-1.5:0.2:1.5]';
+
+   % plotting region
+   % pts = [-2:0.32:3;-1.5:0.2:1.5]';
    pts = [0 0];
    for i = -5:0.8:30,
     for j = -20:0.8:20,
@@ -71,6 +72,7 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
           % ++tp3;
      end;     
    end;
+
 
    for i = m1:length(X1),
      x = [X1(i,1)  X1(i,2)];        % x is 1x2

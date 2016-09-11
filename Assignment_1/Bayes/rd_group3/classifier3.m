@@ -38,6 +38,13 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
    tp1 = 0;
    tp2 = 0;
    tp3 = 0;
+
+   t12 = 0;
+   t13 = 0;
+   t21 = 0;
+   t23 = 0;
+   t31 = 0;
+   t32 = 0;
    m = length(X1) + length(Y1) + length(Z1);
 
    Pc1 = log(m1/m);
@@ -98,11 +105,13 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
         plot(x(1),x(2),'b','MarkerSize',10);
           hold on;
           ++tp2;
+          ++t12;
       end;    
       if a == g3,
         plot(x(1),x(2),'m','MarkerSize',10);
           hold on;
           ++tp3;
+	  ++t13;
      end;     
    end; 
 
@@ -118,6 +127,7 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
         plot(x(1),x(2),'g','MarkerSize',10);
           hold on;
           ++tp1;
+	  ++t21;
      end;     
      if a == g2,
         p2=plot(x(1),x(2),'b','MarkerSize',10);
@@ -128,6 +138,7 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
         plot(x(1),x(2),'m','MarkerSize',10);
           hold on;
           ++tp3;
+	  ++t23;
      end;       
    end;  
 
@@ -143,11 +154,13 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
         plot(x(1),x(2),'g','MarkerSize',10);
           hold on;
           ++tp1;
+	  ++t31;
      end;     
      if a == g2,
         plot(x(1),x(2),'b','MarkerSize',10);
           hold on;
           ++tp2;
+	  ++t32;
       end;    
       if a == g3,
         p3=plot(x(1),x(2),'m','MarkerSize',10);
@@ -166,6 +179,12 @@ function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier3(X,Y,Z)
    disp(tp1);
    disp(tp2);
    disp(tp3);
+   disp(t12)
+   disp(t13)
+   disp(t21)
+   disp(t23)
+   disp(t31)
+   disp(t32)
 
    xlabel('x coordinate');
    ylabel('y coordinate');
