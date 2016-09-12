@@ -1,25 +1,34 @@
-function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier2(X,Y,Z,W)
+function [tc1,tc2,tc3,tp1,tp2,tp3] = classifier2(X,Y,Z,W)
    
    m1 = 0.75 * length(X);
    m2 = 0.75 * length(Y);
-   m3 = 0.75 * length(Z);
-   m4 = 0.75 * length(W);	
+   m3 = 0.75 * length(Z); 
+   m4 = 0.75 * length(W); 
+   m = m1+m2+m3+m4;
    
    X1 = X;
    Y1 = Y;
    Z1 = Z;
    W1 = W;
 
-   X = X(1:m1,:);        %training data
+   X = X(1:m1,:);
    Y = Y(1:m2,:);
    Z = Z(1:m3,:);
    W = W(1:m4,:);
-   A = [X;Y;Z;W];
-   sigma = cov(A);
-   sigma = pinv(sigma);
-   sigma
+   Pc1 = log(m1/m);
+   Pc2 = log(m2/m);
+   Pc3 = log(m3/m);
+   Pc4 = log(m4/m);
+   
+   
+   sigma1 = cov([X;Y;Z;W]);
+   sigma = sigma1;
+   sigma2=sigma;
+   sigma3=sigma;
+   sigma4=sigma;
+   
    mean1 = (mean(X))';
-   mean2 = (mean(Y))';
+   mean2 = (mean(Y))';  %2x1
    mean3 = (mean(Z))';
    mean4 = (mean(W))';
    
@@ -31,40 +40,27 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier2(X,Y,Z,W)
    tp2 = 0;
    tp3 = 0;
    tp4 = 0;
-
-   t12 = 0;
-   t13 = 0;
-   t14 = 0;
-   t21 = 0;
-   t23 = 0;
-   t24 = 0;
-   t31 = 0;
-   t32 = 0;
-   t34 = 0;
-   t41 = 0;
-   t42 = 0;
-   t43 = 0;
+   figure(1);
 
    m1 = m1 + 1;
    m2 = m2 + 1;
    m3 = m3 + 1;
    m4 = m4 + 1;
-   figure(1);
 
-   %plotting region
-   % pts = [-2:0.32:3;-1.5:0.2:1.5]';
+   % plotting region
+   figure(1);
    pts = [0 0];
    for i = -10:0.4:15,
-    for j = -10:0.4:15,
+    for j = -15:0.4:15,
       pts = [pts;i j];
     end;
    end;
    for i = 1:length(pts);
      x = [pts(i,1); pts(i,2)];
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
-     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3;
-     g4 = (sigma * mean4)' * x + (-1/2) * (sigma * mean4)' * mean4;
+     g1 = g(x(1),x(2),mean1,sigma1,Pc1);
+     g2 = g(x(1),x(2),mean2,sigma2,Pc2);
+     g3 = g(x(1),x(2),mean3,sigma3,Pc3);
+     g4 = g(x(1),x(2),mean4,sigma4,Pc4);
      a = [g1 g2 g3 g4];
      a = max(a);
      if a == g1,
@@ -78,180 +74,458 @@ function [tc1,tc2,tc3,tc4,tp1,tp2,tp3,tp4] = classifier2(X,Y,Z,W)
           % ++tp2;
       end;    
       if a == g3,
-        plot(x(1),x(2),'r');
+        plot(x(1),x(2),'Color',[0,0.5,0.3]);
           hold on;
           % ++tp3;
-     end;
-       if a == g4,
-        plot(x(1),x(2),'b');
+     end;     
+     if a == g4,
+        plot(x(1),x(2),'Color',[0 0.3 0.1]);
           hold on;
           % ++tp4;
-     end;      
-   end;
-
-  for i = m1:length(X1),
-     x = [X1(i,1) ; X1(i,2)];     
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
-     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3;
-     g4 = (sigma * mean4)' * x + (-1/2) * (sigma * mean4)' * mean4;
-     a = [g1 g2 g3 g4];
-     a = max(a);
-     if a == g1,
-        p1=plot(x(1),x(2),'g','MarkerSize',10);
-          hold on;
-          ++tc1;
-     end;     
-     if a == g2,
-        plot(x(1),x(2),'b');
-          hold on;
-          ++tp2;
-	  ++t12;
-      end;    
-      if a == g3,
-        plot(x(1),x(2),'m');
-          hold on;
-          ++tp3;
-	  ++t13;
      end;
-       if a == g4,
-        plot(x(1),x(2),'c');
-          hold on;
-          ++tp4;
-	  ++t14;
-     end;     
    end;
+   %training data
+   for i = 1:m1,
+      x = [X1(i,1)  X1(i,2)];
+      x = x';
+      p1=plot(x(1),x(2),'g');
+      hold on;
+    end;
+   for i = 1:m2,
+      x = [Y1(i,1)  Y1(i,2)];
+      x = x';
+      p2=plot(x(1),x(2),'b');
+      hold on;
+    end;   
+    for i = 1:m3,
+      x = [Z1(i,1)  Z1(i,2)];
+      x = x';
+      p3=plot(x(1),x(2),'m');
+      hold on;
+    end;  
+    for i = 1:m4,
+      x = [W1(i,1)  W1(i,2)];
+      x = x';
+      p4=plot(x(1),x(2),'Color',[0.3 0 0.1]);
+      hold on;
+    end;      
 
-   for i = m2:length(Y1),
-     x = [Y1(i,1) ; Y1(i,2)];
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
-     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3;
-     g4 = (sigma * mean4)' * x + (-1/2) * (sigma * mean4)' * mean4;
-     a = [g1 g2 g3 g4];
-     a = max(a);
-     if a == g1,
-        plot(x(1),x(2),'g');
-          hold on;
-          ++tp1;
-	  ++t21;
-     end;     
-     if a == g2,
-        p2=plot(x(1),x(2),'b','MarkerSize',10);
-          hold on;
-          ++tc2;
-      end;    
-      if a == g3,
-        plot(x(1),x(2),'m');
-          hold on;
-          ++tp3;
-	  ++t23;
-     end;
-       if a == g4,
-        plot(x(1),x(2),'c');
-          hold on;
-          ++tp4;
-	  ++t24;
-     end;     
-   end;
+   %  % testing data
+   % for i = m1:length(X1),
+   %   x = [X1(i,1)  X1(i,2)];        % x is 1x2
+   %   x = x';
+   %   g1 = g(x(1),x(2),mean1,sigma1,Pc1);
+   %   g2 = g(x(1),x(2),mean2,sigma2,Pc2);
+   %   g3 = g(x(1),x(2),mean3,sigma3,Pc3);
+   %   a = [g1 g2 g3];
+   %  a = max(a);
+   %   if a == g1,
+   %      % p1=plot(x(1),x(2),'g');
+   %        hold on;
+   %        ++tc1;
+   %   end;     
+   %   if a == g2,
+   %      % plot(x(1),x(2),'b');
+   %        hold on;
+   %        ++tp2;
+   %    end;    
+   %    if a == g3,
+   %      % plot(x(1),x(2),'m');
+   %        hold on;
+   %        ++tp3;
+   %   end;     
+   % end; 
 
-   for i = m3:length(Z1),
-     x = [Z1(i,1) ; Z1(i,2)];
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
-     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3;
-     g4 = (sigma * mean4)' * x + (-1/2) * (sigma * mean4)' * mean4;
-     a = [g1 g2 g3 g4];
-     a = max(a);
-     if a == g1,
-        plot(x(1),x(2),'g');
-          hold on;
-          ++tp1;
-	  ++t31;
-     end;     
-     if a == g2,
-        plot(x(1),x(2),'b');
-          hold on;
-          ++tp2;
-	  ++t32;
-      end;    
-      if a == g3,
-        p3=plot(x(1),x(2),'m','MarkerSize',10);
-          hold on;
-          ++tc3;
-     end;
-       if a == g4,
-        plot(x(1),x(2),'c');
-          hold on;
-          ++tp4;
-	  ++t34;
-     end;       
-   end;
+   % for i = m2:length(Y1),
+   %  x = [Y1(i,1)  Y1(i,2)];        % x is 1x2
+   %   x = x';
+   %   g1 = g(x(1),x(2),mean1,sigma1,Pc1);
+   %   g2 = g(x(1),x(2),mean2,sigma2,Pc2);
+   %   g3 = g(x(1),x(2),mean3,sigma3,Pc3);
+   %   a = [g1 g2 g3];
+   %   a = max(a);
+   %   if a == g1,
+   %      % plot(x(1),x(2),'g');
+   %        hold on;
+   %        ++tp1;
+   %   end;     
+   %   if a == g2,
+   %      % p2=plot(x(1),x(2),'b');
+   %        hold on;
+   %        ++tc2;
+   %    end;    
+   %    if a == g3,
+   %      % plot(x(1),x(2),'m');
+   %        hold on;
+   %        ++tp3;
+   %   end;       
+   % end;  
 
-   for i = m4:length(W1),
-     x = [W1(i,1) ; W1(i,2)];
-     g1 = (sigma * mean1)' * x + (-1/2) * (sigma * mean1)' * mean1;
-     g2 = (sigma * mean2)' * x + (-1/2) * (sigma * mean2)' * mean2;
-     g3 = (sigma * mean3)' * x + (-1/2) * (sigma * mean3)' * mean3;
-     g4 = (sigma * mean4)' * x + (-1/2) * (sigma * mean4)' * mean4;
-     a = [g1 g2 g3 g4];
-     a = max(a);
-     if a == g1,
-        plot(x(1),x(2),'g');
-          hold on;
-          ++tp1;
-	  ++t41;
-     end;     
-     if a == g2,
-        plot(x(1),x(2),'b');
-          hold on;
-          ++tp2;
-	  ++t42;
-      end;    
-      if a == g3,
-        plot(x(1),x(2),'m','MarkerSize',10);
-          hold on;
-          ++tp3;
- 	  ++t43;
-     end;
-       if a == g4,
-        p4=plot(x(1),x(2),'c','MarkerSize',10);
-          hold on;
-          ++tc4;
-     end;       
-   end;     
-
+   % for i = m3:length(Z1),
+   %   x = [Z1(i,1)  Z1(i,2)];        % x is 1x2
+   %   x = x';
+   %   g1 = g(x(1),x(2),mean1,sigma1,Pc1);
+   %   g2 = g(x(1),x(2),mean2,sigma2,Pc2);
+   %   g3 = g(x(1),x(2),mean3,sigma3,Pc3);
+   %   a = [g1 g2 g3];
+   %   a = max(a);
+   %   if a == g1,
+   %      % plot(x(1),x(2),'g');
+   %        hold on;
+   %        ++tp1;
+   %   end;     
+   %   if a == g2,
+   %      % plot(x(1),x(2),'b');
+   %        hold on;
+   %        ++tp2;
+   %    end;    
+   %    if a == g3,
+   %      % p3=plot(x(1),x(2),'m');
+   %        hold on;
+   %        ++tc3;
+   %   end;      
+   % end;
    
-   tp1 = tp1 + tc1;
-   tp2 = tp2 + tc2;
-   tp3 = tp3 + tc3;
-   tp4 = tp4 + tc4;
-   
-   disp(tc1)
-   disp(tc2)
-   disp(tc3)
-   disp(tc4)
-   disp(tp1)
-   disp(tp2)
-   disp(tp3)  
-   disp(tp4)
+   % tp1 += tc1;
+   % tp2 += tc2;
+   % tp3 += tc3; 
 
-   disp(t12)
-   disp(t13)
-   disp(t14)
-   disp(t21)
-   disp(t23)
-   disp(t24)
-   disp(t31)
-   disp(t32)
-   disp(t34)
-   disp(t41)
-   disp(t42)
-   disp(t43)
-
+   % disp(tc1);
+   % disp(tc2);
+   % disp(tc3);
+   % disp(tp1);
+   % disp(tp2);
+   % disp(tp3);
    xlabel('x coordinate');
    ylabel('y coordinate');
-   title('Classifier2 OD');
+   title('Classifier2 OD Bayes');
    legend([p1,p2,p3,p4],'Class1','Class2','Class3','Class4');
+   print -djpg 21.jpg;
+   hold off;
 
-end  
+   %plotting region C1,C2
+   figure(2);
+   for i = 1:length(pts);
+     x = [pts(i,1); pts(i,2)];
+     g1 = g(x(1),x(2),mean1,sigma1,Pc1);
+     g2 = g(x(1),x(2),mean2,sigma2,Pc2);
+     % g3 = g(x(1),x(2),mean3,sigma3,0);
+     a = [g1 g2];
+     a = max(a);
+     if a == g1,
+        plot(x(1),x(2),'y');
+          hold on;
+          % ++tc1;
+     end;     
+     if a == g2,
+        plot(x(1),x(2),'c');
+          hold on;
+          % ++tp2;
+      end;    
+     %  if a == g3,
+     %    plot(x(1),x(2),'Color',[0,0.5,0.3]);
+     %      hold on;
+     %      % ++tp3;
+     % end;     
+   end;
+   %next 2 loops plot points of C1 and C2
+   for i = 1:m1,
+      x = [X1(i,1)  X1(i,2)];
+      x = x';
+      p1=plot(x(1),x(2),'g');
+      hold on;
+    end;
+   for i = 1:m2,
+      x = [Y1(i,1)  Y1(i,2)];
+      x = x';
+      p2=plot(x(1),x(2),'b');
+      hold on;
+    end;   
+   xlabel('x coordinate');
+   ylabel('y coordinate');
+   title('Classifier2 OD Bayes C1,C2');
+   legend([p1,p2],'Class1','Class2');
+   print -djpg 22.jpg;
+   hold off;
+
+   %plotting region C2,C3
+   figure(3);
+   for i = 1:length(pts);
+     x = [pts(i,1); pts(i,2)];
+     % g1 = g(x(1),x(2),mean1,sigma1,0);
+     g2 = g(x(1),x(2),mean2,sigma2,Pc2);
+     g3 = g(x(1),x(2),mean3,sigma3,Pc3);
+     a = [g3 g2];
+     a = max(a);
+     % if a == g1,
+     %    plot(x(1),x(2),'y');
+     %      hold on;
+     %      % ++tc1;
+     % end;     
+     if a == g2,
+        plot(x(1),x(2),'c');
+          hold on;
+          % ++tp2;
+      end;    
+      if a == g3,
+        plot(x(1),x(2),'Color',[0,0.5,0.3]);
+          hold on;
+          % ++tp3;
+     end;     
+   end;
+   %next 2 loops plot points of C2 and C3
+   for i = 1:m3,
+      x = [Z1(i,1)  Z1(i,2)];
+      x = x';
+      p1=plot(x(1),x(2),'m');
+      hold on;
+    end;
+   for i = 1:m2,
+      x = [Y1(i,1)  Y1(i,2)];
+      x = x';
+      p2=plot(x(1),x(2),'b');
+      hold on;
+    end;   
+   xlabel('x coordinate');
+   ylabel('y coordinate');
+   title('Classifier2 OD Bayes C2,C3');
+   legend([p1,p2],'Class3','Class2');
+   print -djpg 23.jpg;
+   hold off;
+   
+      %plotting region C1,C3
+   figure(4);
+   for i = 1:length(pts);
+     x = [pts(i,1); pts(i,2)];
+     g1 = g(x(1),x(2),mean1,sigma1,Pc1);
+     % g2 = g(x(1),x(2),mean2,sigma2,0);
+     g3 = g(x(1),x(2),mean3,sigma3,Pc3);
+     a = [g3 g1];
+     a = max(a);
+     if a == g1,
+        plot(x(1),x(2),'y');
+          hold on;
+          % ++tc1;
+     end;     
+     % if a == g2,
+     %    plot(x(1),x(2),'c');
+     %      hold on;
+     %      % ++tp2;
+     %  end;    
+      if a == g3,
+        plot(x(1),x(2),'Color',[0,0.5,0.3]);
+          hold on;
+          % ++tp3;
+     end;     
+   end;
+   %next 2 loops plot points of C1and C3
+   for i = 1:m3,
+      x = [Z1(i,1)  Z1(i,2)];
+      x = x';
+      p1=plot(x(1),x(2),'m');
+      hold on;
+    end;
+   for i = 1:m1,
+      x = [X1(i,1)  X1(i,2)];
+      x = x';
+      p2=plot(x(1),x(2),'g');
+      hold on;
+    end;   
+   xlabel('x coordinate');
+   ylabel('y coordinate');
+   title('Classifier2 OD Bayes C1,C3');
+   legend([p1,p2],'Class3','Class1');
+   print -djpg 24.jpg;
+   hold off;
+
+   %Remaining three plots
+   %c1 c4
+    figure(6);
+   for i = 1:length(pts);
+     x = [pts(i,1); pts(i,2)];
+     g1 = g(x(1),x(2),mean1,sigma1,Pc1);
+     % g2 = g(x(1),x(2),mean2,sigma2,0);
+     g4 = g(x(1),x(2),mean4,sigma4,Pc4);
+     a = [g4 g1];
+     a = max(a);
+     if a == g1,
+        plot(x(1),x(2),'y');
+          hold on;
+          % ++tc1;
+     end;     
+     % if a == g2,
+     %    plot(x(1),x(2),'c');
+     %      hold on;
+     %      % ++tp2;
+     %  end;    
+      if a == g4,
+        plot(x(1),x(2),'Color',[0,0.3,0.1]);
+          hold on;
+          % ++tp3;
+     end;     
+   end;
+   %next 2 loops plot points of C1and C3
+   for i = 1:m4,
+      x = [W1(i,1)  W1(i,2)];
+      x = x';
+      p1=plot(x(1),x(2),'Color',[0.3 0 0.1]);
+      hold on;
+    end;
+   for i = 1:m1,
+      x = [X1(i,1)  X1(i,2)];
+      x = x';
+      p2=plot(x(1),x(2),'g');
+      hold on;
+    end;   
+   xlabel('x coordinate');
+   ylabel('y coordinate');
+   title('Classifier2 OD Bayes C4,C1');
+   legend([p1,p2],'Class4','Class1');
+   print -djpg 26.jpg;
+   hold off;
+   
+   %plotting region C2,C4
+   figure(7);
+   for i = 1:length(pts);
+     x = [pts(i,1); pts(i,2)];
+     % g1 = g(x(1),x(2),mean1,sigma1,0);
+     g2 = g(x(1),x(2),mean2,sigma2,Pc2);
+     g4 = g(x(1),x(2),mean4,sigma4,Pc4);
+     a = [g4 g2];
+     a = max(a);
+     % if a == g1,
+     %    plot(x(1),x(2),'y');
+     %      hold on;
+     %      % ++tc1;
+     % end;     
+     if a == g2,
+        plot(x(1),x(2),'c');
+          hold on;
+          % ++tp2;
+      end;    
+      if a == g4,
+        plot(x(1),x(2),'Color',[0.3 0 0.1]);
+          hold on;
+          % ++tp3;
+     end;     
+   end;
+   %next 2 loops plot points of C2 and C4
+   for i = 1:m4,
+      x = [W1(i,1)  W1(i,2)];
+      x = x';
+      p1=plot(x(1),x(2),'Color',[0.3 0 0.1]);
+      hold on;
+    end;
+   for i = 1:m2,
+      x = [Y1(i,1)  Y1(i,2)];
+      x = x';
+      p2=plot(x(1),x(2),'b');
+      hold on;
+    end;   
+   xlabel('x coordinate');
+   ylabel('y coordinate');
+   title('Classifier2 OD Bayes C2,C4');
+   legend([p1,p2],'Class4','Class2');
+   print -djpg 27.jpg;
+   hold off;
+
+   %plotting region C4,C3
+   figure(8);
+   for i = 1:length(pts);
+     x = [pts(i,1); pts(i,2)];
+     % g1 = g(x(1),x(2),mean1,sigma1,0);
+     g4 = g(x(1),x(2),mean4,sigma4,Pc4);
+     g3 = g(x(1),x(2),mean3,sigma3,Pc3);
+     a = [g3 g4];
+     a = max(a);
+     % if a == g1,
+     %    plot(x(1),x(2),'y');
+     %      hold on;
+     %      % ++tc1;
+     % end;     
+     if a == g4,
+        plot(x(1),x(2),'Color',[0 0.3 0.1]);
+          hold on;
+          % ++tp2;
+      end;    
+      if a == g3,
+        plot(x(1),x(2),'Color',[0,0.5,0.3]);
+          hold on;
+          % ++tp3;
+     end;     
+   end;
+   %next 2 loops plot points of C2 and C3
+   for i = 1:m3,
+      x = [Z1(i,1)  Z1(i,2)];
+      x = x';
+      p1=plot(x(1),x(2),'m');
+      hold on;
+    end;
+   for i = 1:m4,
+      x = [W1(i,1)  W1(i,2)];
+      x = x';
+      p2=plot(x(1),x(2),'Color',[0.3 0 0.1]);
+      hold on;
+    end;   
+   xlabel('x coordinate');
+   ylabel('y coordinate');
+   title('Classifier2 OD Bayes C4,C3');
+   legend([p1,p2],'Class3','Class4');
+   print -djpg 28.jpg;
+   hold off;
+
+
+   figure(5);
+
+   %Next three for loops plot the training
+   for i = 1:m1,
+      x = [X1(i,1)  X1(i,2)];
+      x = x';
+      p1=plot(x(1),x(2),'g');
+      hold on;
+    end;
+   for i = 1:m2,
+      x = [Y1(i,1)  Y1(i,2)];
+      x = x';
+      p2=plot(x(1),x(2),'b');
+      hold on;
+    end;    
+        
+
+   for i = 1:m3,
+     x = [Z1(i,1)  Z1(i,2)];        % x is 1x2
+     x = x';
+      p3=plot(x(1),x(2),'m');
+     hold on;
+      end; 
+
+    for i = 1:m4,
+      x = [W1(i,1)  W1(i,2)];
+      x = x';
+      p4=plot(x(1),x(2),'Color',[0.3 0 0.1]);
+      hold on;
+    end;   
+
+   hold on;
+   [x,y]=meshgrid(-10:0.4:15,-15:0.4:15);
+   i_max = size(x)(1,1);
+   j_max = size(y)(1,2);
+   for i = 1:1:i_max,
+    for j = 1:1:j_max,
+      z1(i,j)=g(x(i,j),y(i,j),mean1,sigma1,Pc1);
+      z2(i,j)=g(x(i,j),y(i,j),mean2,sigma2,Pc2);
+      z3(i,j)=g(x(i,j),y(i,j),mean3,sigma3,Pc3);
+      z4(i,j)=g(x(i,j),y(i,j),mean4,sigma4,Pc4);
+      z(i,j)=max(max(z1(i,j),max(z2(i,j),z3(i,j))),z4(i,j));
+    end;
+   end;
+   contour(x,y,z,30);
+   hold on;
+   xlabel('x coordinate');
+   ylabel('y coordinate');
+   title('Classifier2 OD Bayes Contour plot');
+   legend([p1,p2,p3,p4],'Class1','Class2','Class3','Class4');   
+   print -djpg 25.jpg;
+end;   
+
+

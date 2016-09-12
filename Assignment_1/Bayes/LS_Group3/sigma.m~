@@ -1,7 +1,0 @@
-function [J] = sigma(X)
-   sigma1 = cov(X);
-   %sigma2 = cov(Y);
-   %sigma3 = %cov(Z);
-   J = sigma1;
-   %J = (sigma1 + sigma2)% + sigma3)/3;
-end   	
