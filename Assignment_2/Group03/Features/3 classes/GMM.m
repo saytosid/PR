@@ -50,8 +50,8 @@ function [Mean,Cov,Pi] = GMM(X,k)
 			lini = lfinal;
 			lfinal = likelihood(X,Mean,Cov,Pi);         %here
 
-			lfinal
-			plot(lfinal,u,'MarkerSize',6,'m');
+			% lfinal
+			% plot(lfinal,u,'MarkerSize',6,'m');
 			hold on;
 	end;	
 

@@ -31,30 +31,30 @@ while (u<=50),
 
 		% plot(X(i,1) , X(i,2) , 'Color' , [(51*g)/255,0,0]);
 		% hold on;
-		if (g==1),
-			plot(X(i,1) , X(i,2) , 'y');
-			hold on;
-		end;	
-		if (g==2),
-			plot(X(i,1) , X(i,2) , 'b');
-			hold on;
-		end;
-		if (g==3),
-			plot(X(i,1) , X(i,2) , 'm');
-			hold on;
-		end;
-		if (g==4),
-			plot(X(i,1) , X(i,2) , 'g');
-			hold on;
-		end;
-		if (g==5),
-			plot(X(i,1) , X(i,2) , 'c');
-			hold on;
-		end;	
-		if (g==6),
-			plot(X(i,1) , X(i,2) , 'r');
-			hold on;
-		end;
+		% if (g==1),
+		% 	plot(X(i,1) , X(i,2) , 'y');
+		% 	hold on;
+		% end;	
+		% if (g==2),
+		% 	plot(X(i,1) , X(i,2) , 'b');
+		% 	hold on;
+		% end;
+		% if (g==3),
+		% 	plot(X(i,1) , X(i,2) , 'm');
+		% 	hold on;
+		% end;
+		% if (g==4),
+		% 	plot(X(i,1) , X(i,2) , 'g');
+		% 	hold on;
+		% end;
+		% if (g==5),
+		% 	plot(X(i,1) , X(i,2) , 'c');
+		% 	hold on;
+		% end;	
+		% if (g==6),
+		% 	plot(X(i,1) , X(i,2) , 'r');
+		% 	hold on;
+		% end;
 		% if (g==7),
 		% 	plot(X(i,1) , X(i,2) , 'k');
 		% 	hold on;
