@@ -66,6 +66,54 @@ disp('classifier starts ..');
 	% tc2
 	% tp1
 	% tp2
+	
+% 	for i=m:n,
+% 		p = 0;
+% 		q = 0;
+% 		for j=1:k,
+% 			p = p + Pi(j,1) * normal(X(i,:) , Mean(j,:) , Cov(:,:,j));
+% 			q = q + PiY(j,1) * normal(X(i,:) , MeanY(j,:) , CovY(:,:,j));		
+% 		end;
+% 		if (p>q),
+% 			plot(X(i,1),X(i,2),'g');
+% 			tc1 = tc1 + 1;
+% 			hold on;
+% 			end;			
+% 		if (q>=p),
+% 			plot(X(i,1),X(i,2),'b');
+% 			tp2 = tp2 + 1;
+% 			hold on;
+% 		end;
+% 	end;		
+
+% 	n = rows(Y);
+% 	m = (0.75 * n) + 1;	
+% 	for i=m:n,
+% 		p = 0;
+% 		q = 0;
+% 		for j=1:k,
+% 			p = p + Pi(j,1) * normal(Y(i,:) , Mean(j,:) , Cov(:,:,j));
+% 			q = q + PiY(j,1) * normal(Y(i,:) , MeanY(j,:) , CovY(:,:,j));		
+% 		end;
+% 		if (p>q),
+% 			plot(Y(i,1),Y(i,2),'g');
+% 			tp1 = tp1 + 1;
+% 			hold on;
+% 			end;			
+% 		if (q>=p),
+% 			plot(Y(i,1),Y(i,2),'b');
+% 			tc2 = tc2 + 1;
+% 			hold on;
+% 		end;
+% 	end;
+
+% 	tp1 = tp1 + tc1;
+% 	tp2 = tp2 + tc2;
+% 	tc1
+% 	tc2
+% 	tp1
+% 	tp2
+
 
 
 	%%%%%%%%%% plotting region %%%%%%%%%%
@@ -107,6 +155,7 @@ disp('classifier starts ..');
 	     % end;     
    end;
 
+
    %training data
    n = rows(X);
    m1 = floor(0.75 * n);
@@ -117,7 +166,7 @@ disp('classifier starts ..');
       hold on;
     end;
     
-    n = rows(Y);
+   n = rows(Y);
    m2 = floor(0.75 * n);
    for i = 1:m2,
       x = [Y(i,1)  Y(i,2)];
@@ -125,6 +174,7 @@ disp('classifier starts ..');
       p2=plot(x(1),x(2),'MarkerSize',8,'b');
       hold on;
     end;   
+
    % %  n = rows();
    % % m1 = floor(0.75 * n);
    % %  for i = 1:m3,
