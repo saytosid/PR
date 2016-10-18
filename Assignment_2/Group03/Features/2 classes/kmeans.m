@@ -21,7 +21,7 @@ while (u<=50),
 	a = zeros(k , d);
 	num = zeros(k , 1);
 	cluster = zeros(m , 1);
-	% figure(j);
+	figure(j);
 
 	for i = 1:m,
 		g = arg_min_dist(X(i,:),Mean);

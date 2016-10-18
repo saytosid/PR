@@ -212,174 +212,174 @@ disp('classifier starts ..');
 
    xlabel('X coordinate');
    ylabel('Y coordinate');
-   title('Real Dataset');
+   title('Real Dataset(K = 4)');
    legend([p1,p2,p3],'Class1','Class2','Class3');
-   print -djpg RD_3.jpg;
+   print -djpg RD_4.jpg;
    hold off;
 
- %plotting region C1,C2
-   figure(204);
-   for i = 1:length(pts);
-   	 p=0;
-   	 q=0;
-     x = [pts(i,1); pts(i,2)];
-	 for j = 1:k,
-	     p = p + Pi(j,1) * normal(x(1,:) , Mean(j,:) , Cov(:,:,j));
-		 q = q + PiY(j,1) * normal(x(1,:) , MeanY(j,:) , CovY(:,:,j));
-		 % r = r +	PiZ(j,1) * normal(x(i,:) , MeanZ(j,:) , CovZ(:,:,j));
-	     a = [p q];
-	     a = max(a);
-	     if a == p,
-	        p1=plot(x(1),x(2),'y');
-	          hold on;
-	          % ++tc1;
-	     end;     
-	     if a == q,
-	        plot(x(1),x(2),'c');
-	          hold on;
-	          % ++tp2;
-	      end;    
-	     %  if a == g3,
-	     %    plot(x(1),x(2),'Color',[0,0.5,0.3]);
-	     %      hold on;
-	     %      % ++tp3;
-	     % end;
-	     end;     
-   end;
+ % %plotting region C1,C2
+ %   figure(204);
+ %   for i = 1:length(pts);
+ %   	 p=0;
+ %   	 q=0;
+ %     x = [pts(i,1); pts(i,2)];
+	%  for j = 1:k,
+	%      p = p + Pi(j,1) * normal(x(1,:) , Mean(j,:) , Cov(:,:,j));
+	% 	 q = q + PiY(j,1) * normal(x(1,:) , MeanY(j,:) , CovY(:,:,j));
+	% 	 % r = r +	PiZ(j,1) * normal(x(i,:) , MeanZ(j,:) , CovZ(:,:,j));
+	%      a = [p q];
+	%      a = max(a);
+	%      if a == p,
+	%         p1=plot(x(1),x(2),'y');
+	%           hold on;
+	%           % ++tc1;
+	%      end;     
+	%      if a == q,
+	%         plot(x(1),x(2),'c');
+	%           hold on;
+	%           % ++tp2;
+	%       end;    
+	%      %  if a == g3,
+	%      %    plot(x(1),x(2),'Color',[0,0.5,0.3]);
+	%      %      hold on;
+	%      %      % ++tp3;
+	%      % end;
+	%      end;     
+ %   end;
 
-   %next 2 loops plot points of C1 and C2
-   n = rows(X);
-   m1 = floor(0.75 * n);
-   for i = 1:m1,
-      x = [X(i,1)  X(i,2)];
-      x = x';
-      p1=plot(x(1),x(2),'g');
-      hold on;
-    end;
-   n = rows(Y);
-   m2 = floor(0.75 * n);
-   for i = 1:m2,
-      x = [Y(i,1)  Y(i,2)];
-      x = x';
-      p2=plot(x(1),x(2),'b');
-      hold on;
-    end;   
-   xlabel('x coordinate');
-   ylabel('y coordinate');
-   title('Real Data C1,C2');
-   legend([p1,p2],'Class1','Class2');
-   print -djpg Real_C1_c2_k=3.jpg;
-   hold off;
+ %   %next 2 loops plot points of C1 and C2
+ %   n = rows(X);
+ %   m1 = floor(0.75 * n);
+ %   for i = 1:m1,
+ %      x = [X(i,1)  X(i,2)];
+ %      x = x';
+ %      p1=plot(x(1),x(2),'g');
+ %      hold on;
+ %    end;
+ %   n = rows(Y);
+ %   m2 = floor(0.75 * n);
+ %   for i = 1:m2,
+ %      x = [Y(i,1)  Y(i,2)];
+ %      x = x';
+ %      p2=plot(x(1),x(2),'b');
+ %      hold on;
+ %    end;   
+ %   xlabel('x coordinate');
+ %   ylabel('y coordinate');
+ %   title('Real Data C1,C2');
+ %   legend([p1,p2],'Class1','Class2');
+ %   print -djpg Real_C1_c2_k=3.jpg;
+ %   hold off;
 
-   % plotting region C1,C3
-   figure(214);
-   for i = 1:length(pts);
-   	 p=0;
-   	 q=0;
-   	 r =0;
-     x = [pts(i,1); pts(i,2)];
-	 for j = 1:k,
-	     p = p + Pi(j,1) * normal(x(1,:) , Mean(j,:) , Cov(:,:,j));
-		 % q = q + PiY(j,1) * normal(x(1,:) , MeanY(j,:) , CovY(:,:,j));
-		 r = r + PiZ(j,1) * normal(x(1,:) , MeanZ(j,:) , CovZ(:,:,j));
-	     a = [p r];
-	     a = max(a);
-	     if a == p,
-	        p1=plot(x(1),x(2),'y');
-	          hold on;
-	          % ++tc1;
-	     end;     
-	     % if a == q,
-	     %    plot(x(1),x(2),'c');
-	     %      hold on;
-	     %      % ++tp2;
-	     %  end;    
-	      if a == r,
-	        plot(x(1),x(2),'Color',[0,0.5,0.3]);
-	          hold on;
-	          % ++tp3;
-	     end;
-	end;     
-   end;
+ %   % plotting region C1,C3
+ %   figure(214);
+ %   for i = 1:length(pts);
+ %   	 p=0;
+ %   	 q=0;
+ %   	 r =0;
+ %     x = [pts(i,1); pts(i,2)];
+	%  for j = 1:k,
+	%      p = p + Pi(j,1) * normal(x(1,:) , Mean(j,:) , Cov(:,:,j));
+	% 	 % q = q + PiY(j,1) * normal(x(1,:) , MeanY(j,:) , CovY(:,:,j));
+	% 	 r = r + PiZ(j,1) * normal(x(1,:) , MeanZ(j,:) , CovZ(:,:,j));
+	%      a = [p r];
+	%      a = max(a);
+	%      if a == p,
+	%         p1=plot(x(1),x(2),'y');
+	%           hold on;
+	%           % ++tc1;
+	%      end;     
+	%      % if a == q,
+	%      %    plot(x(1),x(2),'c');
+	%      %      hold on;
+	%      %      % ++tp2;
+	%      %  end;    
+	%       if a == r,
+	%         plot(x(1),x(2),'Color',[0,0.5,0.3]);
+	%           hold on;
+	%           % ++tp3;
+	%      end;
+	% end;     
+ %   end;
 
-   %next 2 loops plot points of C1 and C3
-   n = rows(X);
-   m1 = floor(0.75 * n);
-   for i = 1:m1,
-      x = [X(i,1)  X(i,2)];
-      x = x';
-      p1=plot(x(1),x(2),'g');
-      hold on;
-    end;
-   n = rows(Z);
-   m2 = floor(0.75 * n);
-   for i = 1:m2,
-      x = [Z(i,1)  Z(i,2)];
-      x = x';
-      p2=plot(x(1),x(2),'m');
-      hold on;
-    end;   
-   xlabel('x coordinate');
-   ylabel('y coordinate');
-   title('Real Data C1,C3');
-   legend([p1,p2],'Class1','Class3');
-   print -djpg Real_C1_c3_k=3.jpg;
-   hold off;
+ %   %next 2 loops plot points of C1 and C3
+ %   n = rows(X);
+ %   m1 = floor(0.75 * n);
+ %   for i = 1:m1,
+ %      x = [X(i,1)  X(i,2)];
+ %      x = x';
+ %      p1=plot(x(1),x(2),'g');
+ %      hold on;
+ %    end;
+ %   n = rows(Z);
+ %   m2 = floor(0.75 * n);
+ %   for i = 1:m2,
+ %      x = [Z(i,1)  Z(i,2)];
+ %      x = x';
+ %      p2=plot(x(1),x(2),'m');
+ %      hold on;
+ %    end;   
+ %   xlabel('x coordinate');
+ %   ylabel('y coordinate');
+ %   title('Real Data C1,C3');
+ %   legend([p1,p2],'Class1','Class3');
+ %   print -djpg Real_C1_c3_k=3.jpg;
+ %   hold off;
 
-   % plotting region C2,C3
-   figure(215);
-   for i = 1:length(pts);
-   	 p=0;
-   	 q=0;
-   	 r = 0;
-     x = [pts(i,1); pts(i,2)];
-	 for j = 1:k,
-	     % p = p + Pi(j,1) * normal(x(1,:) , Mean(j,:) , Cov(:,:,j));
-		 q = q + PiY(j,1) * normal(x(1,:) , MeanY(j,:) , CovY(:,:,j));
-		 r = r + PiZ(j,1) * normal(x(1,:) , MeanZ(j,:) , CovZ(:,:,j));
-	     a = [q r];
-	     a = max(a);
-	     % if a == p,
-	     %    p1=plot(x(1),x(2),'y');
-	     %      hold on;
-	     %      % ++tc1;
-	     % end;     
-	     if a == q,
-	        plot(x(1),x(2),'c');
-	          hold on;
-	          % ++tp2;
-	      end;    
-	      if a == r,
-	        plot(x(1),x(2),'Color',[0,0.5,0.3]);
-	          hold on;
-	          % ++tp3;
-	     end;
-	end;     
-   end;
+ %   % plotting region C2,C3
+ %   figure(215);
+ %   for i = 1:length(pts);
+ %   	 p=0;
+ %   	 q=0;
+ %   	 r = 0;
+ %     x = [pts(i,1); pts(i,2)];
+	%  for j = 1:k,
+	%      % p = p + Pi(j,1) * normal(x(1,:) , Mean(j,:) , Cov(:,:,j));
+	% 	 q = q + PiY(j,1) * normal(x(1,:) , MeanY(j,:) , CovY(:,:,j));
+	% 	 r = r + PiZ(j,1) * normal(x(1,:) , MeanZ(j,:) , CovZ(:,:,j));
+	%      a = [q r];
+	%      a = max(a);
+	%      % if a == p,
+	%      %    p1=plot(x(1),x(2),'y');
+	%      %      hold on;
+	%      %      % ++tc1;
+	%      % end;     
+	%      if a == q,
+	%         plot(x(1),x(2),'c');
+	%           hold on;
+	%           % ++tp2;
+	%       end;    
+	%       if a == r,
+	%         plot(x(1),x(2),'Color',[0,0.5,0.3]);
+	%           hold on;
+	%           % ++tp3;
+	%      end;
+	% end;     
+ %   end;
 
-   %next 2 loops plot points of C2 and C3
-   n = rows(Y);
-   m1 = floor(0.75 * n);
-   for i = 1:m1,
-      x = [Y(i,1)  Y(i,2)];
-      x = x';
-      p1=plot(x(1),x(2),'b');
-      hold on;
-    end;
-   n = rows(Z);
-   m2 = floor(0.75 * n);
-   for i = 1:m2,
-      x = [Z(i,1)  Z(i,2)];
-      x = x';
-      p2=plot(x(1),x(2),'m');
-      hold on;
-    end;   
-   xlabel('x coordinate');
-   ylabel('y coordinate');
-   title('Real Data C2,C3');
-   legend([p1,p2],'Class2','Class3');
-   print -djpg Real_C2_c3_k=3.jpg;
-   hold off;
+ %   %next 2 loops plot points of C2 and C3
+ %   n = rows(Y);
+ %   m1 = floor(0.75 * n);
+ %   for i = 1:m1,
+ %      x = [Y(i,1)  Y(i,2)];
+ %      x = x';
+ %      p1=plot(x(1),x(2),'b');
+ %      hold on;
+ %    end;
+ %   n = rows(Z);
+ %   m2 = floor(0.75 * n);
+ %   for i = 1:m2,
+ %      x = [Z(i,1)  Z(i,2)];
+ %      x = x';
+ %      p2=plot(x(1),x(2),'m');
+ %      hold on;
+ %    end;   
+ %   xlabel('x coordinate');
+ %   ylabel('y coordinate');
+ %   title('Real Data C2,C3');
+ %   legend([p1,p2],'Class2','Class3');
+ %   print -djpg Real_C2_c3_k=3.jpg;
+ %   hold off;
 
 
 

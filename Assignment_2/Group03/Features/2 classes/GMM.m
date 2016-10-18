@@ -11,7 +11,7 @@ function [Mean,Cov,Pi] = GMM(X,k)
 	lini = 0;
 	u = 1;
 
-	% figure(101);
+	 figure(101);
 	title('Likelihood Ring, k = 3');
 	xlabel('X co-ordinate');
 	ylabel('Y co-ordinate');
