@@ -4,4 +4,4 @@ y = (y - x);
 y = y .^2;
 dist = sum(sum(y));					% check here
 
-end	
+end;	
