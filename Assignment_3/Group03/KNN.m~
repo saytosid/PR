@@ -1,0 +1,36 @@
+function [] = KNN(Train , Test , K)
+	num_classes = size(Train);
+	N = size(Test);
+	a = 0;
+	for i = 1:num_classes,
+		a = a + length(Train{i});						%%%% a = total training examples	
+	end;
+	
+	Confusion = zeros(N,N);
+
+	for i=1:N,											%%%% classes in test
+		[z,numtest] = size(Test{i});					%%%% num. of test ex. in class i 
+		for j = 1:numtest, 
+			Xtest = Test{i}{j};							%%%% a test example
+			DTWdistance = zeros(a,2);
+			m = 1;										%%%% index for DTWdistance		
+			%%%%% Training part %%%%%%
+			for k = 1:num_classes,
+				[z,numtrain] = size(Train{k});
+				for l = 1:numtrain,
+					Xtrain = Train{k}{l};
+					Var = DTW(Xtrain , Xtest);
+					DTWdistance(m,1) = Var;
+					DTWdistance(m,2) = k;
+					m = m + 1;
+				end	
+			end
+			D = sortrows(DTWdistance,1);
+			D = D(1:K,:);
+			label = mode(D(:,2));
+			Confusion(i,label) = Confusion(i,label) + 1;
+		end	
+	end	
+
+	Confusion
+end	
