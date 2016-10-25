@@ -1,0 +1,11 @@
+K =  6
+num_train =  782
+num_test =  260
+confusion_matrix =
+
+   52    2   36
+    6   48   23
+   19    1   73
+
+accuracy =  0.66538
+

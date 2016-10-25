@@ -1,7 +1,9 @@
 [train,test] = datasets_image();
 % train{1}{1}
 % train{1}{2}
+
 K = 64;
+
 num_train = size(train{1})(2)+size(train{2})(2)+size(train{3})(2)
 num_test = size(test{1})(2)+size(test{2})(2)+size(test{3})(2)
 % vertcat(train')
@@ -44,14 +46,13 @@ for i = 1:3
 			itr = itr + 1;
 		end
 
-		K_mins %has the K_nearest_neighbors_information for one test example
+
+		K_mins; %has the K_nearest_neighbors_information for one test example
 		K_i = cell(3,1);
 		for j = 1:3
 			K_i{j} = 0;
 		end
 		%%%%%%%%%%%%Predicting%%%%%%%%%%%%%
-		str = 'predicting for '
-		fflush(stdin);
 
 		for k = 1:K
 			index = K_mins{k}(2);
@@ -75,5 +76,7 @@ for i = 1:3
 	end
 	%%%%Print stats%%%%%%
 	confusion_matrix
-
+	accuracy = sum(diag(confusion_matrix))/num_test
 end
+
+
