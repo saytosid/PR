@@ -6,7 +6,7 @@ d = columns(X);
 n = k + 1;
 
 w = m/(k+1);
-w = floor(w);
+w = floor(w);									
 
 for i = 1:k,										%take first k elements of X as initial means
 	Mean(i,:) = X(i*w,:);
@@ -15,7 +15,9 @@ end;
 diff = ones(k , d);
 j = 0;
 u = 0;
-while (u<=50),
+Jini = 9999;
+Jfinal = 0;
+while (abs(Jfinal - Jini) >= 0.005),
 	j = j + 1; 
 	u = u + 1;
 	a = zeros(k , d);
@@ -29,36 +31,36 @@ while (u<=50),
 		num(g,1) = num(g,1) + 1;
 		cluster(i,1) = g;
 
-		% plot(X(i,1) , X(i,2) , 'Color' , [(51*g)/255,0,0]);
-		% hold on;
-		% if (g==1),
-		% 	plot(X(i,1) , X(i,2) , 'y');
-		% 	hold on;
-		% end;	
-		% if (g==2),
-		% 	plot(X(i,1) , X(i,2) , 'b');
-		% 	hold on;
-		% end;
-		% if (g==3),
-		% 	plot(X(i,1) , X(i,2) , 'm');
-		% 	hold on;
-		% end;
-		% if (g==4),
-		% 	plot(X(i,1) , X(i,2) , 'g');
-		% 	hold on;
-		% end;
-		% if (g==5),
-		% 	plot(X(i,1) , X(i,2) , 'c');
-		% 	hold on;
-		% end;	
-		% if (g==6),
-		% 	plot(X(i,1) , X(i,2) , 'r');
-		% 	hold on;
-		% end;
-		% if (g==7),
-		% 	plot(X(i,1) , X(i,2) , 'k');
-		% 	hold on;
-		% end;	
+		plot(X(i,1) , X(i,2) , 'Color' , [(51*g)/255,0,0]);
+		hold on;
+		if (g==1),
+			plot(X(i,1) , X(i,2) , 'y');
+			hold on;
+		end;	
+		if (g==2),
+			plot(X(i,1) , X(i,2) , 'b');
+			hold on;
+		end;
+		if (g==3),
+			plot(X(i,1) , X(i,2) , 'm');
+			hold on;
+		end;
+		if (g==4),
+			plot(X(i,1) , X(i,2) , 'g');
+			hold on;
+		end;
+		if (g==5),
+			plot(X(i,1) , X(i,2) , 'c');
+			hold on;
+		end;	
+		if (g==6),
+			plot(X(i,1) , X(i,2) , 'r');
+			hold on;
+		end;
+		if (g==7),
+			plot(X(i,1) , X(i,2) , 'k');
+			hold on;
+		end;	
 
 	end;
 	
@@ -73,6 +75,22 @@ while (u<=50),
 	
 	if a == zeros(k , d),
 		break;
+	end;
+
+	l1 = 1;
+	for j1=1:k,
+	Y = zeros(num(j1,1) , d);
+	for i1=1:m,
+		if(cluster(i1,1) == j1),
+			Y(l1,:) = X(i1,:);
+			l1 = l1+1;
+		end;
+	end;
+	Y = Y - Mean(j1,:);            %Y = 1xd
+	% covk(:,:,j1) = (Y'*Y)/num(j1,1);
+	Y = Y.^2;
+	Jini = Jfinal;
+	Jfinal = sum(sum(Y));
 	end;	
 	% hold off;
 	% xlabel('x coordinate');
