@@ -54,8 +54,4 @@ function [train test] = datasets_speech()    %%dir1-3 : training data, dir4-6 : 
 		test{3}{i} = load([dir6,fname]);
 	end
 	
-
-		
-
-
 end	

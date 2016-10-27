@@ -1,5 +1,0 @@
-function [classlabel] = KNN(Test , Train , K)
-
-	
-
-end; 

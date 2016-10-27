@@ -7,9 +7,19 @@ function [] = k_accuracy(M)
 		line([M(i-1,1),M(i,1)],[M(i-1,2),M(i,2)],'Color','b','linewidth',2);
 		hold on;
 	end;	
-	title('Image Accuracy vs K');
-	xlabel('k');
-	ylabel('Accuracy');
+	title('Speech Accuracy vs K');
+	h = get(gca, 'title');
+	set(h, 'FontSize', 14)
+
+	xlabel('K')
+	h = get(gca, 'xlabel');
+	set(h, 'FontSize', 14);
+
+	ylabel('Classfication Accuracy');
+	%xlabel('This is the label')
+	h = get(gca, 'ylabel');
+	set(h, 'FontSize', 14);
+
 
 end;
 
