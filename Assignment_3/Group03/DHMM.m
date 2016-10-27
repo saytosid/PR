@@ -11,18 +11,18 @@ num_test = size(test{1})(2)+size(test{2})(2)+size(test{3})(2)
 confusion_matrix = zeros(3,3);
 
 %%%%%%%%%Vector Quantization%%%%%%%%%%%%%%
-VQ(train,num_code_vectors);
-VQ(test,num_code_vectors);   
+VQ(train,test,num_code_vectors);
 
 
-%%%%%%%%%Training%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%Training%%%%%%%%%%%%%%%%%%%
 lambda = cell(3,1);
 for i = 1:3,
-	lambda{i} = buildDHMM(train{i});
+	lambda{i} = buildDHMM(train{i}); %%N M will be needed
 end
 
 
-%%%%%%%%Testing%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%Testing%%%%%%%%%%%%%%%%%%%%
 for i = 1:3
 	for j = 1:size(test{i})(2) %%loop to get all test data of class i
 		predicted_label = 1;
