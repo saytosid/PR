@@ -5,7 +5,7 @@ function lambda = buildDHMM(D,N,M)
 
 %%%REQUIREMENTS%%%%
 %P_DHMM - P(O|lambda)
-%ETA(i,j,alphaa,beeta,A,B,t)
+%ZETA(i,j,alphaa,beeta,A,B,O,t,N)
 
 
 
