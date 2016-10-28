@@ -43,5 +43,5 @@ for i = 1:num_class,
 	end	
 end	
 
-labelTest
+labelTest;
 end
