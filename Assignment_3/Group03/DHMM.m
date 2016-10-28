@@ -11,7 +11,12 @@ num_test = size(test{1})(2)+size(test{2})(2)+size(test{3})(2)
 confusion_matrix = zeros(3,3);
 
 %%%%%%%%%Vector Quantization%%%%%%%%%%%%%%
-VQ(train,test,num_code_vectors);
+test
+train
+disp('Vector Quantizing')
+[train,test] = VQ(train,test,num_code_vectors);
+train
+test
 
 
 
@@ -35,7 +40,7 @@ for i = 1:3
 				predicted_label = k;
 			end
 		end
-		confusion_matrix[actual_label,predicted_label] += 1;
+		confusion_matrix(actual_label,predicted_label) += 1;
 	end
 
 end
