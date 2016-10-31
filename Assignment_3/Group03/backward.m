@@ -1,4 +1,4 @@
-function Beta = forward(lambda , O, T) %Beta for an observation sequence
+function Beta = backward(lambda , O, T) %Beta for an observation sequence
 
 N = lambda{1};
 M = lambda{2};

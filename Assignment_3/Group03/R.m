@@ -9,8 +9,12 @@ function p = R(i,alphaa,beeta,t,N)
 numerator = alphaa(t,i)*beeta(t,i);
 denom = 0;
 for x = 1:N
-	demon + = alphaa(t,x)*beeta(t,x);
+	denom += alphaa(t,x)*beeta(t,x);
 
 end
-p = numerator/denom;
+if(numerator==0)
+	p=0;
+else
+	p = numerator/denom;
+end
 end

@@ -26,11 +26,12 @@ lambda = cell(3,1);
 for i = 1:3,
 	N = num_states;
 	M = num_code_vectors;
+	printf("Class %d\n",i);
 	lambda{i} = buildDHMM(train{i},N,M); %%N M will be needed
 end
 
 
-%%%%%%%%%%%%%%%Testing%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%Testing%%%%%%%%%%%%%%%%%%%%
 for i = 1:3
 	for j = 1:size(test{i})(2) %%loop to get all test data of class i
 		predicted_label = 1;
@@ -45,5 +46,9 @@ for i = 1:3
 		end
 		confusion_matrix(actual_label,predicted_label) += 1;
 	end
-
 end
+
+%%%%%%%%%print stats%%%%%%%%%%%%%
+confusion_matrix
+accuracy = sum(diag(confusion_matrix)/num_test)
+

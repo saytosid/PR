@@ -5,7 +5,8 @@ function p = ZETA(i,j,alphaa,beeta,A,B,O,t,N)
 %A - transition probability
 %B - emmision probability
 %O - Obersavation sequence for which eta is desired
-
+% size(alphaa)
+% size(O)
 numerator = alphaa(t,i)*A(i,j)*B(j,O(t+1))*beeta(t+1,j);
 denom = 0;
 for x = 1:N
@@ -14,5 +15,9 @@ for x = 1:N
 	end
 
 end
-p = numerator/denom;
+if(numerator==0)
+	p=0;
+else
+	p = numerator/denom;
+end
 end
