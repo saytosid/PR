@@ -1,10 +1,10 @@
 [train,test] = datasets_speech();
 % train{1}{1}
 % train{1}{2}
-num_code_vectors = 4
-num_states = 3
-num_train = size(train{1})(2)+size(train{2})(2)+size(train{3})(2)
-num_test = size(test{1})(2)+size(test{2})(2)+size(test{3})(2)
+num_code_vectors = 10;
+num_states = 3;
+num_train = size(train{1})(2)+size(train{2})(2)+size(train{3})(2);
+num_test = size(test{1})(2)+size(test{2})(2)+size(test{3})(2);
 % vertcat(train')
 % % train{1}
 % % train{2}
@@ -37,13 +37,15 @@ for i = 1:3
 		predicted_label = 1;
 		actual_label = i;
 		p = 0;
+		% tmp = 
 		for k = 1:3 %%loop through all the models(lambdas)
-			tmp = P_DHMM(test{i}{j},lambda{k});%%posterior prob of test ex wrt class k
-			if(tmp>p)
-				p = tmp;
-				predicted_label = k;
-			end
+			tmp(k,1) = log(P_DHMM(test{i}{j},lambda{k}));%%posterior prob of test ex wrt class k
+			% if(tmp>p)
+			% 	p = tmp;
+			% 	predicted_label = k;
+			% end
 		end
+		[a,predicted_label] = max(tmp);
 		confusion_matrix(actual_label,predicted_label) += 1;
 	end
 end

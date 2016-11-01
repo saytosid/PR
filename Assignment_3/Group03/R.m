@@ -12,7 +12,7 @@ for x = 1:N
 	denom += alphaa(t,x)*beeta(t,x);
 
 end
-if(numerator==0)
+if(numerator==0),
 	p=0;
 else
 	p = numerator/denom;

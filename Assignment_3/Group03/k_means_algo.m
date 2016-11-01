@@ -9,7 +9,7 @@ function [ mus_of_clusters] = k_means_algo( X , K )
         mus_of_clusters{i} = X(i+25,:);
     end
             
-    iterations = 5;
+    iterations = 50;
     i = 0;
 
     old_J = inf;
@@ -52,7 +52,7 @@ function [ mus_of_clusters] = k_means_algo( X , K )
         end            
         i = i + 1;
     end
-    
-
+disp('k_means_algo');    
+i
 end
 

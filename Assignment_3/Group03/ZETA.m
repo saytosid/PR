@@ -13,9 +13,8 @@ for x = 1:N
 	for y = 1:N
 		denom += alphaa(t,x)*A(x,y)*B(y,O(t+1))*beeta(t+1,y);
 	end
-
 end
-if(numerator==0)
+if(numerator==0),
 	p=0;
 else
 	p = numerator/denom;
