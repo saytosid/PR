@@ -16,9 +16,9 @@ for t = 1:T,
 		if t > 1,
 			a = 0;
 			for i = 1:N,
-				if A(i,j) == 0
-					disp('ERROR')
-				end
+				% if A(i,j) == 0
+				% 	disp('ERROR')
+				% end
 				a += alphaa(t-1,i)*A(i,j);
 			end
 			alphaa(t,j) = a * B(j,O(t));
@@ -33,5 +33,5 @@ for t = 1:T,
 		end
 	end
 end
-a			
+a	;		
 end

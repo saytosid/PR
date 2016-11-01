@@ -11,7 +11,7 @@ function lambda = buildDHMM(D,N,M)
 % R(i,alphaa,beeta,t,N)
 lambda = cell(5,1);
 %step1 Initialisation
-lambda = initialise_ergodicOrNonergodic(N,M,D,0);%0-ergodic, 1- non ergodic
+lambda = initialise_ergodicOrNonergodic(N,M,D,1);%0-ergodic, 1- non ergodic
 THRESHOLD = 0.01;
 %P(D|lambda)
 prevP = 0;
@@ -79,6 +79,7 @@ while(true)
 		end
 		Pi(i,1) /= length(D); 
 		% A(i,j) /= length(D);
+		% length(D)
 		
 		%%for Bj(Vk), here Bi(v)
 		
@@ -92,7 +93,7 @@ while(true)
 						numerator += R_{l}{t}(i,1);
 					end
 				end
-				if(numerator>0 && denom>0)
+				if(numerator>0)
 					B(i,v) += numerator/denom;
 				end
 			end
@@ -119,7 +120,8 @@ while(true)
 	% newP = log(newP);
 	if(abs(newP - prevP) < THRESHOLD)
 		return;
-	else
+	end
+	if(abs(newP - prevP) > THRESHOLD)
 		prevP = newP;
 	end
 

@@ -14,4 +14,18 @@ for i = 1:N,
 end	
 % p = log(p);
 
+q = 0;
+for i = 1:N,
+	q += alphaa(T,i);
+end	
+% p
+% q
+
+r = 0;
+if(p!=q)
+	
+	% p
+	% q
+	% fprintf(stderr,"Big error here!!! %f\t%f\n",p,q);
+
 end
