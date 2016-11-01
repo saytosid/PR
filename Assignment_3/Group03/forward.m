@@ -25,13 +25,5 @@ for t = 1:T,
 		end	
 	end	
 end
-% a = 0;
-% for t = 1:T,
-% 	for j = 1:N,
-% 		if alphaa(t,j) == 0
-% 			a +=1;
-% 		end
-% 	end
-% end
-% a			
+
 end

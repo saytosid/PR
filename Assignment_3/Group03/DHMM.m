@@ -1,7 +1,7 @@
 [train,test] = datasets_speech();
 % train{1}{1}
 % train{1}{2}
-num_code_vectors = 10;
+num_code_vectors = 5;
 num_states = 3;
 num_train = size(train{1})(2)+size(train{2})(2)+size(train{3})(2);
 num_test = size(test{1})(2)+size(test{2})(2)+size(test{3})(2);
@@ -26,7 +26,7 @@ lambda = cell(3,1);
 for i = 1:3,
 	N = num_states;
 	M = num_code_vectors;
-	printf("Class %d\n",i);
+	fprintf(stderr,"Class %d\n",i);
 	lambda{i} = buildDHMM(train{i},N,M); %%N M will be needed
 end
 
