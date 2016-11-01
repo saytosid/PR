@@ -12,6 +12,19 @@ Pi = lambda{5};
 for i = 1:N,
 	p += Pi(i,1) * B(i,O(1)) * Beta(1,i);
 end	
-% p = log(p);
 
+
+
+q = 0;
+for i = 1:N,
+	q += alphaa(T,i);
+end	
+
+r = 0;
+if p == q,
+	r = 0;
+	p
+	q
+end;	
+			
 end

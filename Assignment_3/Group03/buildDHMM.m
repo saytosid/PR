@@ -12,7 +12,7 @@ function lambda = buildDHMM(D,N,M)
 lambda = cell(5,1);
 %step1 Initialisation
 lambda = initialise_ergodicOrNonergodic(N,M,D,0);%0-ergodic, 1- non ergodic
-THRESHOLD = 0.01;
+THRESHOLD = 0.1;
 %P(D|lambda)
 prevP = 0;
 for i = 1:length(D)
