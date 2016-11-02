@@ -14,10 +14,9 @@ lambda = cell(5,1);
 
 lambda = initialise_ergodicOrNonergodic(N,M,D,1);%0-ergodic, 1- non ergodic
 lambda_max = lambda;
-THRESHOLD = 0.1;
 cutoff_ctr = 0;
-cutoffThreshold = 5;
-THRESHOLD = 0.01;
+cutoffThreshold = 10;
+THRESHOLD = 100;
 %P(D|lambda)
 prevP = 0;
 for i = 1:length(D)
@@ -25,6 +24,7 @@ for i = 1:length(D)
 		prevP += log(P_DHMM(D{i},lambda));
 	end
 end
+maxP = prevP;
 % prevP = log(prevP);
 % prevP
 % return;
@@ -120,26 +120,17 @@ while(true)
 		
 	end
 	%convergence, check here
-	delta = ((newP - prevP));
-	if(delta > 0)
+	if(newP > maxP)
 		lambda_max = lambda;
+		maxP = newP;
 	end
-	if(delta < 0)
-		if(cutoff_ctr == cutoffThreshold)
-			ReturnP = 0;
-			for z = 1:length(D)
-				
-				ReturnP += log(P_DHMM(D{z},lambda_max));
-				
-			end
-			ReturnP
-			return;
-		end
-		cutoff_ctr += 1;
-	end
-	
-	fprintf(stderr,"PrevP = %f NewP = %f delta = %f Threshold = %f \n",prevP,newP, delta,THRESHOLD);
+	delta = (newP - prevP);
+	fprintf(stderr,"MaxP = %f\tNewP = %f\tdelta = %f\tThreshold = %f\t\n",maxP,newP, delta,THRESHOLD);
 	prevP = newP;
+	cutoff_ctr += 1;
+	if(cutoff_ctr == cutoffThreshold)
+		return;
+	end
 	
 
 end

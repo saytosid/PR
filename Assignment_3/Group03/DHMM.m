@@ -28,6 +28,14 @@ for i = 1:3,
 	M = num_code_vectors;
 	fprintf(stderr,"Class %d\n",i);
 	lambda{i} = buildDHMM(train{i},N,M); %%N M will be needed
+	D = train{i};
+	ReturnP = 0;
+	for z = 1:length(D)
+		
+		ReturnP += log(P_DHMM(D{z},lambda{i}));
+		
+	end
+	ReturnP
 end
 
 
