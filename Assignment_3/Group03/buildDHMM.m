@@ -1,4 +1,4 @@
-function lambda = buildDHMM(D,N,M)
+function lambda_max	 = buildDHMM(D,N,M)
 %D is the set of training examples of a class i(D == train(i))
 %lambda is the model for class i
 %This function is desired to build HMM model for a class i
@@ -13,8 +13,11 @@ lambda = cell(5,1);
 %step1 Initialisation
 
 lambda = initialise_ergodicOrNonergodic(N,M,D,1);%0-ergodic, 1- non ergodic
+lambda_max = lambda;
+THRESHOLD = 0.1;
+cutoff_ctr = 0;
+cutoffThreshold = 5;
 THRESHOLD = 0.01;
-
 %P(D|lambda)
 prevP = 0;
 for i = 1:length(D)
@@ -23,9 +26,12 @@ for i = 1:length(D)
 	end
 end
 % prevP = log(prevP);
+% prevP
+% return;
+delta_old = 0;
 while(true)
 
-	fprintf(stderr,"P = %f \n",prevP);
+	% fprintf(stderr,"P = %f \n",prevP);
 	%Step2-Estep
 	alphaa = cell(length(D),1);%alphaa is a cell array, each element is alpha(T,N) matrix of alpha values for that Observation sequnce
 	beeta = cell(length(D),1);
@@ -67,28 +73,28 @@ while(true)
 		denom = 0;
 		for l = 1:length(D)
 			Pi(i,1) += R_{l}{1}(i,1);
-			for t = 1:(length(D{l})-1)
-					denom += R_{l}{t}(i,1);
-			end 
-			for j = 1:N
-				%%For A(i,j)
-				numerator = 0;
-				% denom = 0;
-				for t = 1:(length(D{l})-1)
-					numerator += zeeta{l}{t}(i,j);
-					% denom += R_{l}{t}(i,1);
-				end 
-				if(numerator>0 && denom>0)
-					A(i,j) += numerator/denom;
-					% A(i,j)
-				end
-				A(i,j) /= length(D);
-			end
 		end
 		Pi(i,1) /= length(D); 
-		% A(i,j) /= length(D);
-		% length(D)
-		
+
+		% For A(i,j)
+		for l=1:length(D)
+			denom = 0; %same for all j hence out of j loop
+			for t = 1:(length(D{l})-1)
+				denom += R_{l}{t}(i,1);
+			end
+			%denom done
+
+			%for numerator
+			numerator = 0;
+			for j = 1:N
+				for t = 1:(length(D{l})-1)
+					numerator += zeeta{l}{t}(i,j);
+				end
+				A(i,j) += (numerator/denom);
+			end
+
+		end
+		A = A./length(D);
 		%%for Bj(Vk), here Bi(v)
 		
 		for v = 1:M
@@ -108,30 +114,39 @@ while(true)
 			B(i,v) /= length(D);
 		end
 		
-	end
+	% end
 	lambda{4} = B;
 	lambda{3} = A;
 	lambda{5} = Pi;
 
 	newP = 0;
-	for l = 1:length(D)
-		% P_DHMM(D{l},lambda)
-		if(P_DHMM(D{l},lambda) > 0 && P_DHMM(D{l},lambda) < 1)
-			newP += log(P_DHMM(D{l},lambda));
+	for z = 1:length(D)
+		
+		newP += log(P_DHMM(D{z},lambda));
+		
+	end
+	%convergence, check here
+	delta = ((newP - prevP));
+	if(delta > 0)
+		lambda_max = lambda;
+	end
+	if(delta < 0)
+		if(cutoff_ctr == cutoffThreshold)
+			ReturnP = 0;
+			for z = 1:length(D)
+				
+				ReturnP += log(P_DHMM(D{z},lambda_max));
+				
+			end
+			ReturnP
+			return;
 		end
-		if(P_DHMM(D{l},lambda) > 1)
-			fprintf(stderr,"Error, Probability greater than 1\n");
-			% P_DHMM(D{l},lambda)
-		end
+		cutoff_ctr += 1;
 	end
-	% newP
-	% newP = log(newP);
-	if(abs(newP - prevP) < THRESHOLD)
-		return;
-	end
-	if(abs(newP - prevP) > THRESHOLD)
-		prevP = newP;
-	end
+	
+	fprintf(stderr,"PrevP = %f NewP = %f delta = %f Threshold = %f \n",prevP,newP, delta,THRESHOLD);
+	prevP = newP;
+	
 
 end
 end
