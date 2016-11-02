@@ -2,7 +2,7 @@
 % train{1}{1}
 % train{1}{2}
 num_code_vectors = 5;
-num_states = 5;
+num_states = 3;
 num_train = size(train{1})(2)+size(train{2})(2)+size(train{3})(2);
 num_test = size(test{1})(2)+size(test{2})(2)+size(test{3})(2);
 % vertcat(train')
