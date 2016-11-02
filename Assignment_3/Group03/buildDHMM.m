@@ -1,4 +1,4 @@
-function lambda_max	 = buildDHMM(D,N,M)
+function lambda_max	 = buildDHMM(D,N,M,flag)
 %D is the set of training examples of a class i(D == train(i))
 %lambda is the model for class i
 %This function is desired to build HMM model for a class i
@@ -12,7 +12,7 @@ function lambda_max	 = buildDHMM(D,N,M)
 lambda = cell(5,1);
 %step1 Initialisation
 
-lambda = initialise_ergodicOrNonergodic(N,M,D,1);%0-ergodic, 1- non ergodic
+lambda = initialise_ergodicOrNonergodic(N,M,D,flag);%flag 0-ergodic, 1- non ergodic
 lambda_max = lambda;
 cutoff_ctr = 0;
 cutoffThreshold = 10;

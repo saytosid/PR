@@ -1,0 +1,51 @@
+num_code_vectors = 2
+num_states = 2
+confusion_matrix =
+
+   14    6    1
+    3    7    1
+    2    5    5
+
+accuracy =  0.59091
+
+num_code_vectors = 3
+num_states = 3
+confusion_matrix =
+
+    5   10    6
+    1    6    4
+    1    5    6
+
+accuracy =  0.38636
+
+num_code_vectors = 3
+num_states = 2
+confusion_matrix =
+
+   11    5    5
+    1    6    4
+    2    4    6
+
+accuracy =  0.52273
+
+num_code_vectors =  2
+num_states =  1
+confusion_matrix =
+
+   15    3    3
+    3    7    1
+    2    8    2
+
+accuracy =  0.54545
+
+
+num_code_vectors =  5
+num_states =  3
+confusion_matrix =
+
+    8   13    0
+    2    6    3
+    2    5    5
+
+accuracy =  0.43182
+

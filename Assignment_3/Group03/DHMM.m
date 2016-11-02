@@ -1,11 +1,10 @@
-[train,test] = datasets_speech();
-% train{1}{1}
-% train{1}{2}
+% [train,test] = datasets_speech();
+[train,test] = datasets_image();
 
 
-num_code_vectors = 3;
-num_states = 2;
-
+num_code_vectors = 20;
+num_states = 10;
+flag = 0; %0-ergodic, 1-left to right
 
 num_train = size(train{1})(2)+size(train{2})(2)+size(train{3})(2);
 num_test = size(test{1})(2)+size(test{2})(2)+size(test{3})(2);
@@ -31,7 +30,7 @@ for i = 1:3,
 	N = num_states;
 	M = num_code_vectors;
 	fprintf(stderr,"Class %d\n",i);
-	lambda{i} = buildDHMM(train{i},N,M); %%N M will be needed
+	lambda{i} = buildDHMM(train{i},N,M,flag); %%N M will be needed,flag 0-ergodic, 1- non ergodic
 	D = train{i};
 	ReturnP = 0;
 	for z = 1:length(D)
@@ -63,6 +62,8 @@ for i = 1:3
 end
 
 %%%%%%%%%print stats%%%%%%%%%%%%%
+num_code_vectors
+num_states
 confusion_matrix
 accuracy = sum(diag(confusion_matrix)/num_test)
 
