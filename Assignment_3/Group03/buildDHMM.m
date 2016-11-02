@@ -11,11 +11,13 @@ function lambda_max	 = buildDHMM(D,N,M)
 % R(i,alphaa,beeta,t,N)
 lambda = cell(5,1);
 %step1 Initialisation
+
 lambda = initialise_ergodicOrNonergodic(N,M,D,1);%0-ergodic, 1- non ergodic
 lambda_max = lambda;
 THRESHOLD = 0.1;
 cutoff_ctr = 0;
 cutoffThreshold = 5;
+THRESHOLD = 0.01;
 %P(D|lambda)
 prevP = 0;
 for i = 1:length(D)

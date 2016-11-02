@@ -14,7 +14,8 @@ for x = 1:N
 end
 if(numerator==0),
 	p=0;
-else
+end
+if(numerator!=0),
 	p = numerator/denom;
 end
 end
