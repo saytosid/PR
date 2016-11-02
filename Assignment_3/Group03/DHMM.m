@@ -26,7 +26,7 @@ lambda = cell(3,1);
 for i = 1:3,
 	N = num_states;
 	M = num_code_vectors;
-	fprintf(stderr,"Class %d\n",i);
+	printf("Class %d\n",i);
 	lambda{i} = buildDHMM(train{i},N,M); %%N M will be needed
 	D = train{i};
 	ReturnP = 0;
