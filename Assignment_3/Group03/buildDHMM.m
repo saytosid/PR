@@ -57,14 +57,6 @@ while(true)
 		end
 	end
 
-	sad = 0;
-	for j = 1:N,
-		sad += zeeta{1}{2}(3,j);
-	end;
-	if(sad == R_{1}{2}(3,1)),
-		fprintf(stderr,"good\n");	
-	end
-
 	%step3 MStep
 	Pi = zeros(N,1);
 	A = zeros (N,N);
