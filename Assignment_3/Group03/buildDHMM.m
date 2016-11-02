@@ -57,6 +57,8 @@ while(true)
 		end
 	end
 
+
+
 	%step3 MStep
 	Pi = zeros(N,1);
 	A = zeros (N,N);
