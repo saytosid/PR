@@ -1,0 +1,82 @@
+num_code_vectors =  4
+num_states =  2
+confusion_matrix =
+
+    9   31   50
+    6   59   12
+   27   19   47
+
+accuracy =  0.44231
+
+num_code_vectors =  6
+num_states =  3
+confusion_matrix =
+
+   61   22    7
+    4   65    8
+   58   23   12
+
+accuracy =  0.53077
+
+num_code_vectors =  6
+num_states =  2
+confusion_matrix =
+
+   25   13   52
+    5   69    3
+   27   16   50
+
+accuracy =  0.55385
+
+num_code_vectors =  8
+num_states =  2
+confusion_matrix =
+
+   22   17   51
+    4   68    5
+   31   15   47
+
+accuracy =  0.52692
+
+num_code_vectors =  16
+num_states =  2
+confusion_matrix =
+
+   43   19   28
+    3   73    1
+   23   30   40
+
+accuracy =  0.60000
+
+
+num_code_vectors =  32
+num_states =  2
+confusion_matrix =
+
+   51   12   27
+    3   71    3
+   13   26   54
+
+accuracy =  0.67692
+
+num_code_vectors =  40
+num_states =  2
+confusion_matrix =
+
+   54   11   25
+    3   72    2
+   12   26   55
+
+accuracy =  0.69615
+
+
+num_code_vectors =  64
+num_states =  2
+confusion_matrix =
+
+   52   13   25
+    2   70    5
+   13   29   51
+
+accuracy =  0.66538
+

@@ -1,10 +1,10 @@
-% [train,test] = datasets_speech();
-[train,test] = datasets_image();
+[train,test] = datasets_speech();
+% [train,test] = datasets_image();
 
 
-num_code_vectors = 20;
-num_states = 10;
-flag = 0; %0-ergodic, 1-left to right
+num_code_vectors = 64;
+num_states = 2;
+flag = 1; %0-ergodic, 1-left to right
 
 num_train = size(train{1})(2)+size(train{2})(2)+size(train{3})(2);
 num_test = size(test{1})(2)+size(test{2})(2)+size(test{3})(2);

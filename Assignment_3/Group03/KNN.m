@@ -2,7 +2,7 @@
 % train{1}{1}
 % train{1}{2}
 
-K = 64;
+K = 1;
 
 num_train = size(train{1})(2)+size(train{2})(2)+size(train{3})(2)
 num_test = size(test{1})(2)+size(test{2})(2)+size(test{3})(2)

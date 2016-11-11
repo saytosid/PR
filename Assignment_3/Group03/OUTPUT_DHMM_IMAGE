@@ -1,0 +1,148 @@
+num_code_vectors =  20
+num_states =  10
+confusion_matrix =
+
+   55   16   19
+    6   54   17
+   32   14   47
+
+accuracy =  0.60000
+pre1 =  0.59140
+pre2 =  0.64286
+pre3 =  0.56627
+meanpre =  0.60017
+rec1 =  0.61111
+rec2 =  0.70130
+rec3 =  0.50538
+meanrec =  0.60593
+f1 =  0.60109
+f2 =  0.67081
+f3 =  0.53409
+meanf =  0.60200
+
+num_code_vectors =  20
+num_states =  5
+confusion_matrix =
+
+   53    7   30
+    5   68    4
+   10   11   72
+
+accuracy =  0.74231
+
+num_code_vectors =  20
+num_states =  8
+confusion_matrix =
+
+   55    7   28
+    6   68    3
+   16   13   64
+
+accuracy =  0.71923
+pre1 =  0.71429
+pre2 =  0.77273
+pre3 =  0.67368
+meanpre =  0.72023
+rec1 =  0.61111
+rec2 =  0.88312
+rec3 =  0.68817
+meanrec =  0.72747
+f1 =  0.65868
+f2 =  0.82424
+f3 =  0.68085
+meanf =  0.72126
+
+
+
+
+num_code_vectors =  20
+num_states =  4
+confusion_matrix =
+
+   53    6   31
+    5   68    4
+    9   10   74
+
+accuracy =  0.75000
+pre1 =  0.79104
+pre2 =  0.80952
+pre3 =  0.67890
+meanpre =  0.75982
+rec1 =  0.58889
+rec2 =  0.88312
+rec3 =  0.79570
+meanrec =  0.75590
+f1 =  0.67516
+f2 =  0.84472
+f3 =  0.73267
+meanf =  0.75085
+
+
+
+num_code_vectors =  20
+num_states =  3
+confusion_matrix =
+
+   53    6   31
+    5   68    4
+   10   10   73
+
+accuracy =  0.74615
+
+num_code_vectors =  15
+num_states =  4
+confusion_matrix =
+
+   50   12   28
+    4   68    5
+   31   15   47
+
+accuracy =  0.63462
+
+
+num_code_vectors =  25
+num_states =  4
+confusion_matrix =
+
+   47    6   37
+    3   67    7
+   10   17   66
+
+accuracy =  0.69231
+pre1 =  0.78333
+pre2 =  0.74444
+pre3 =  0.60000
+meanpre =  0.70926
+rec1 =  0.52222
+rec2 =  0.87013
+rec3 =  0.70968
+meanrec =  0.70068
+f1 =  0.62667
+f2 =  0.80240
+f3 =  0.65025
+meanf =  0.69310
+acc =  0.69231
+
+
+
+num_code_vectors =  22
+num_states =  4
+confusion_matrix =
+
+   50    7   33
+    2   68    7
+   11   15   67
+
+accuracy =  0.71154
+
+
+num_code_vectors =  28
+num_states =  4
+confusion_matrix =
+
+   51    9   30
+    5   67    5
+   11   17   65
+
+accuracy =  0.70385
+

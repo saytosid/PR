@@ -1,4 +1,4 @@
-function [train test] = datasets_speech()    %%dir1-3 : training data, dir4-6 : test data
+function [train test] = datasets_image()    %%dir1-3 : training data, dir4-6 : test data
 	num_classes = 3;
 	train = cell(num_classes,1);
 	test = cell(num_classes,1);

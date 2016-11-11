@@ -8,9 +8,9 @@ function [] = k_accuracy(M)
 		line([M(i-1,1),M(i,1)],[M(i-1,2),M(i,2)],'Color','b','linewidth',2);
 		hold on;
 	end;	
-	title('Speech Accuracy vs K (KNN)','FontSize',12);
-	xlabel('K','FontSize',12);
-	ylabel('Accuracy','FontSize',12);
+	title('Speech Accuracy vs K (KNN)','FontSize',10);
+	xlabel('K','FontSize',10);
+	ylabel('Accuracy','FontSize',10);
 
 end;
 

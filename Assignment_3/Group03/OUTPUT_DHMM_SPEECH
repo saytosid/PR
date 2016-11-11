@@ -1,3 +1,7 @@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+
 num_code_vectors = 2
 num_states = 2
 confusion_matrix =
@@ -7,16 +11,19 @@ confusion_matrix =
     2    5    5
 
 accuracy =  0.59091
+pre1 =  0.73684
+pre2 =  0.38889
+pre3 =  0.71429
+meanpre =  0.61334
+rec1 =  0.66667
+rec2 =  0.63636
+rec3 =  0.41667
+meanrec =  0.57323
+f1 =  0.70000
+f2 =  0.48276
+f3 =  0.52632
+meanf =  0.56969
 
-num_code_vectors = 3
-num_states = 3
-confusion_matrix =
-
-    5   10    6
-    1    6    4
-    1    5    6
-
-accuracy =  0.38636
 
 num_code_vectors = 3
 num_states = 2
@@ -28,24 +35,344 @@ confusion_matrix =
 
 accuracy =  0.52273
 
-num_code_vectors =  2
-num_states =  1
+num_code_vectors =  4
+num_states =  2
 confusion_matrix =
 
-   15    3    3
-    3    7    1
-    2    8    2
+   13    6    2
+    2    4    5
+    2    6    4
 
-accuracy =  0.54545
+accuracy =  0.47727
+
+num_code_vectors =  8
+num_states =  2
+confusion_matrix =
+
+   16    4    1
+    2    7    2
+    1    4    7
+
+accuracy =  0.68182
+pre1 =  0.84211
+pre2 =  0.46667
+pre3 =  0.70000
+meanpre =  0.66959
+rec1 =  0.76190
+rec2 =  0.63636
+rec3 =  0.58333
+meanrec =  0.66053
+f1 =  0.80000
+f2 =  0.53846
+f3 =  0.63636
+meanf =  0.65828
+
+num_code_vectors =  16
+num_states =  2
+confusion_matrix =
+
+   13    6    2
+    1    5    5
+    1    3    8
+
+accuracy =  0.59091
+pre1 =  0.86667
+pre2 =  0.35714
+pre3 =  0.53333
+meanpre =  0.58571
+rec1 =  0.61905
+rec2 =  0.45455
+rec3 =  0.66667
+meanrec =  0.58009
+f1 =  0.72222
+f2 =  0.40000
+f3 =  0.59259
+meanf =  0.57160
+acc =  0.59091
 
 
-num_code_vectors =  5
+num_code_vectors =  32
+num_states =  2
+confusion_matrix =
+
+   15    5    1
+    3    5    3
+    2    4    6
+
+accuracy =  0.59091
+
+num_code_vectors =  68
+num_states =  2
+confusion_matrix =
+
+   16    2    3
+    4    3    4
+    1    2    9
+
+accuracy =  0.63636
+
+
+num_code_vectors =  64
+num_states =  2
+confusion_matrix =
+
+   17    1    3
+    5    3    3
+    0    2   10
+
+accuracy =  0.68182
+pre1 =  0.77273
+pre2 =  0.50000
+pre3 =  0.62500
+meanpre =  0.63258
+rec1 =  0.80952
+rec2 =  0.27273
+rec3 =  0.83333
+meanrec =  0.63853
+f1 =  0.79070
+f2 =  0.35294
+f3 =  0.71429
+meanf =  0.61931
+acc =  0.68182
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+
+num_code_vectors = 3
+num_states = 3
+confusion_matrix =
+
+    5   10    6
+    1    6    4
+    1    5    6
+
+accuracy =  0.38636
+
+num_code_vectors =  4
 num_states =  3
 confusion_matrix =
 
-    8   13    0
-    2    6    3
+    7   12    2
+    1    4    6
     2    5    5
 
+accuracy =  0.36364
+
+num_code_vectors =  8
+num_states =  3
+confusion_matrix =
+
+    4   15    2
+    0    7    4
+    0    4    8
+
 accuracy =  0.43182
+
+num_code_vectors =  16
+num_states =  3
+confusion_matrix =
+
+   15    3    3
+    3    6    2
+    2    6    4
+
+accuracy =  0.56818
+
+num_code_vectors =  64
+num_states =  3
+confusion_matrix =
+
+   16    2    3
+    5    3    3
+    0    2   10
+
+accuracy =  0.65909
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+num_code_vectors =  8
+num_states =  4
+confusion_matrix =
+
+   13    6    2
+    1    8    2
+    0    5    7
+
+accuracy =  0.63636
+
+num_code_vectors =  12
+num_states =  4
+confusion_matrix =
+
+   14    3    4
+    2    7    2
+    1    3    8
+
+accuracy =  0.65909
+
+num_code_vectors =  14
+num_states =  4
+confusion_matrix =
+
+    6    4   11
+    0    7    4
+    1    2    9
+accuracy = 0.5000
+
+
+num_code_vectors =  16
+num_states =  4
+confusion_matrix =
+
+   14    4    3
+    2    7    2
+    2    4    6
+
+accuracy =  0.61364
+pre1 =  0.77778
+pre2 =  0.46667
+pre3 =  0.54545
+meanpre =  0.59663
+rec1 =  0.66667
+rec2 =  0.63636
+rec3 =  0.50000
+meanrec =  0.60101
+f1 =  0.71795
+f2 =  0.53846
+f3 =  0.52174
+meanf =  0.59272
+acc =  0.61364
+
+
+num_code_vectors =  64
+num_states =  4
+confusion_matrix =
+
+   16    2    3
+    5    4    2
+    0    2   10
+
+accuracy =  0.68182
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5%
+num_code_vectors =  8
+num_states =  6
+confusion_matrix =
+
+   8   9   4
+   1   9   1
+   0   4   8
+
+accuracy =  0.56818
+
+num_code_vectors =  16
+num_states =  6
+confusion_matrix =
+
+   16    5    0
+    6    3    2
+    0    4    8
+
+accuracy =  0.61364
+
+num_code_vectors =  32
+num_states =  6
+confusion_matrix =
+
+   17    2    2
+    2    4    5
+    0    4    8
+
+accuracy =  0.65909
+
+num_code_vectors =  64
+num_states =  6
+confusion_matrix =
+
+   16    2    3
+    3    5    3
+    0    2   10
+
+accuracy =  0.70455
+pre1 =  0.84211
+pre2 =  0.55556
+pre3 =  0.62500
+meanpre =  0.67422
+rec1 =  0.76190
+rec2 =  0.45455
+rec3 =  0.83333
+meanrec =  0.68326
+f1 =  0.80000
+f2 =  0.50000
+f3 =  0.71429
+meanf =  0.67143
+
+num_code_vectors =  128
+num_states =  6
+confusion_matrix =
+
+   19    2    0
+    6    3    2
+    3    3    6
+
+accuracy =  0.63636
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+64
+num_states =  7
+confusion_matrix =
+
+   15    3    3
+    4    5    2
+    1    2    9
+
+accuracy =  0.65909
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+
+num_code_vectors =  64
+num_states =  8
+confusion_matrix =
+
+   16    2    3
+    4    5    2
+    0    2   10
+
+accuracy =  0.70455
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+
+num_code_vectors =  64
+num_states =  12
+confusion_matrix =
+
+   16    3    2
+    4    5    2
+    1    3    8
+
+accuracy =  0.65909
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

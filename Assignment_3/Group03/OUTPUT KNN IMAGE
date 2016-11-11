@@ -1,3 +1,13 @@
+K = 1
+confusion_matrix =
+
+   52    2   36
+    6   48   23
+   19    1   73
+
+accuracy =  0.66538
+
+
 K = 2
 Confusion =
 
