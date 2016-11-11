@@ -7,6 +7,7 @@ confusion_matrix =
    32   14   47
 
 accuracy =  0.60000
+<<<<<<< HEAD
 pre1 =  0.59140
 pre2 =  0.64286
 pre3 =  0.56627
@@ -39,6 +40,7 @@ confusion_matrix =
    16   13   64
 
 accuracy =  0.71923
+<<<<<<< HEAD
 pre1 =  0.71429
 pre2 =  0.77273
 pre3 =  0.67368
@@ -64,6 +66,7 @@ confusion_matrix =
     9   10   74
 
 accuracy =  0.75000
+<<<<<<< HEAD
 pre1 =  0.79104
 pre2 =  0.80952
 pre3 =  0.67890
@@ -76,7 +79,6 @@ f1 =  0.67516
 f2 =  0.84472
 f3 =  0.73267
 meanf =  0.75085
-
 
 
 num_code_vectors =  20
@@ -109,6 +111,7 @@ confusion_matrix =
    10   17   66
 
 accuracy =  0.69231
+<<<<<<< HEAD
 pre1 =  0.78333
 pre2 =  0.74444
 pre3 =  0.60000
