@@ -1,0 +1,11 @@
+num_classes =  3
+confusionMatrix =
+
+   79    8    3
+    9   77    8
+    1    6   70
+
+correct =  226
+incorrect =  35
+accuracy =  0.86590
+octave:6> 
