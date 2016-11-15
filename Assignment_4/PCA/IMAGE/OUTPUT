@@ -1,0 +1,38 @@
+
+lambda =
+
+   2.8251e+04
+   3.1707e+05
+
+reducedQ =
+
+   0   1
+
+confusionmatrix =
+
+   573     0     0
+   541     0     0
+   622     0     0
+
+RD_GROUP3
+
+
+LS_GROUP#
+
+lambda =
+
+   53.292
+   43.645
+
+reducedQ =
+
+   1   0
+
+confusionmatrix =
+
+   125     0     0
+   124     1     0
+     0   125     0
+
+
+
