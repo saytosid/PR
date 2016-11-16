@@ -8,13 +8,16 @@ reducedQ =
 
    0   1
 
-confusionmatrix =
+   a =
 
-   573     0     0
-   541     0     0
-   622     0     0
+   552     8    13
+     0   519    22
+     0    46   576
 
 RD_GROUP3
+
+
+
 
 
 LS_GROUP#
@@ -27,12 +30,12 @@ lambda =
 reducedQ =
 
    1   0
+a =
 
-confusionmatrix =
+   123     2     0
+     0   122     3
+     0     0   125
 
-   125     0     0
-   124     1     0
-     0   125     0
 
 
 

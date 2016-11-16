@@ -20,10 +20,19 @@ function [reducedQ, reducedTrain , reducedTest] = getReducedDimensions(Q,l)
 			b = TrainData{i}{j};
 			TrainData{i}{j} = b-a;
 		end
-	end	
+	end
 
 	flattenedTrain = [vertcat(TrainData{1}{:});vertcat(TrainData{2}{:});vertcat(TrainData{3}{:})];
 	CovY = cov(flattenedTrain);
+
+	a = Mean;
+	for i = 1:numclasses,					%%%%%%%%% y = x-mean 
+		Size = length(TrainData{i});
+		for j = 1:Size,
+			b = TrainData{i}{j};
+			TrainData{i}{j} = b+a;
+		end
+	end	
 
 	d = rows(Q);  %% Q = [1 0 ; 0 1]
 	lambda = zeros(d,1);
@@ -50,7 +59,7 @@ function [reducedQ, reducedTrain , reducedTest] = getReducedDimensions(Q,l)
  
 	% max_indices
 
-	for i =1:l,
+	for i = 1:l,
 		reducedQ(i,:) = Q(max_indices(i),:);
 	end	
 	reducedQ

@@ -12,6 +12,18 @@ function [] = PCA(Q,l)  %%%%% l : reduced no of dimensions
 		Cov{i} = cov(flattenedTrain);	
 	end
 
+	flattened = vertcat(reducedTrain{1}(:,:));
+	flattened = vertcat(flattened,reducedTest{1}(:,:));
+	size(flattened)
+	flattened1 = vertcat(reducedTrain{2}(:,:));
+	flattened1 = vertcat(flattened1,reducedTest{2}(:,:));
+	size(flattened1)
+	flattened2 = vertcat(reducedTrain{3}(:,:));
+	flattened2 = vertcat(flattened2,reducedTest{3}(:,:));
+	size(flattened2)
+	classifier(flattened,flattened1,flattened2,1);
+	
+
 	% for i = 1:numclasses,
 	% 	Size = rows(reducedTest{i});
 	% 	for j = 1:Size,
@@ -31,7 +43,7 @@ function [] = PCA(Q,l)  %%%%% l : reduced no of dimensions
 	% 	end	
 	% end	
 
-	confusionmatrix = classify(reducedTest,Mean,Cov,reducedTrain)
+	% confusionmatrix = classify(reducedTest,Mean,Cov,reducedTrain);
 	% hold on;
  %   	xlabel('X coordinate');
  %   	ylabel('Y coordinate');

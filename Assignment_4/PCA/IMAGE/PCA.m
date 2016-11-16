@@ -11,7 +11,8 @@ function [] = PCA(Q,l)  %%%%% l : reduced no of dimensions
 		Cov{i} = cov(flattenedTrain);	
 	end
 
-	confusionmatrix = classify(reducedTest,Mean,Cov,reducedTrain) 
+	% confusionmatrix = classify(reducedTest,Mean,Cov,reducedTrain) 
    
+   	classifier(reducedTrain, reducedTest, l);
 
 end

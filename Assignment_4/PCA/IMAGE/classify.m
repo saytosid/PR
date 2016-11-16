@@ -18,25 +18,28 @@ function [confusionmatrix] = classify(reducedTest,Mean,Cov,reducedTrain)
 	pc1 = pc1/z
 	pc2 = pc2/z
 	pc3 = pc3/z
+
 	
-	Classlabel = 0;
-	for i =1:numclasses,					%%%%%%%%% y = x-mean 
-		Size = length(reducedTest{i});
-		for j =1:Size,
-			Size1 = length(reducedTest{i}{j});
-			for k = 1:Size1,
-				b = reducedTest{i}{j}(k,:);
-				g1 = (-0.5*(b-mean1))*pinv(Cov1)*(b-mean1)' - 0.5*log(det(Cov1)) + pc1;
-				g2 = (-0.5*(b-mean2))*pinv(Cov2)*(b-mean2)' - 0.5*log(det(Cov2)) + pc2; %%%%%%%%%%%5check here
-				g3 = (-0.5*(b-mean3))*pinv(Cov3)*(b-mean3)' - 0.5*log(det(Cov3)) + pc3;
-				a = [g1 g2 g3];
-				[x,classlabel] = max(a);                   %%%%%% max or min???
-				Classlabel(k,:) = classlabel;
-			end
-			classlabel = mode(Classlabel);
-			confusionmatrix(i,classlabel) = confusionmatrix(i,classlabel) + 1;			 
-		end
-	end
+	classifier(1);
+	
+	% Classlabel = 0;
+	% for i =1:numclasses,					%%%%%%%%% y = x-mean 
+	% 	Size = length(reducedTest{i});
+	% 	for j =1:Size,
+	% 		Size1 = length(reducedTest{i}{j});
+	% 		for k = 1:Size1,
+	% 			b = reducedTest{i}{j}(k,:);
+	% 			g1 = (-0.5*(b-mean1))*pinv(Cov1)*(b-mean1)' - 0.5*log(det(Cov1)) + pc1;
+	% 			g2 = (-0.5*(b-mean2))*pinv(Cov2)*(b-mean2)' - 0.5*log(det(Cov2)) + pc2; %%%%%%%%%%%5check here
+	% 			g3 = (-0.5*(b-mean3))*pinv(Cov3)*(b-mean3)' - 0.5*log(det(Cov3)) + pc3;
+	% 			a = [g1 g2 g3];
+	% 			[x,classlabel] = max(a);                   %%%%%% max or min???
+	% 			Classlabel(k,:) = classlabel;
+	% 		end
+	% 		classlabel = mode(Classlabel);
+	% 		confusionmatrix(i,classlabel) = confusionmatrix(i,classlabel) + 1;			 
+	% 	end
+	% end
 
 	% figure(4);
 	% pts = [0];
