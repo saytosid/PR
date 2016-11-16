@@ -1,3 +1,5 @@
+N1,N2,N3 = 91 , 77 ,93
+
 l = 1
 reducedQ =
 
@@ -108,6 +110,21 @@ confusionMatrix =
 correct =  180
 incorrect =  81
 accuracy =  0.68966
+
+pre1 =  0.64773
+pre2 =  0.74074
+pre3 =  0.68478
+meanpre =  0.69108
+rec1 =  0.62637
+rec2 =  0.77922
+rec3 =  0.67742
+meanrec =  0.69434
+f1 =  0.63687
+f2 =  0.75949
+f3 =  0.68108
+meanf =  0.69248
+acc =  0.68966
+
 
 
 l = 7
@@ -261,6 +278,21 @@ correct =  225
 incorrect =  36
 accuracy =  0.86207
 
+pre1 =  0.89333
+pre2 =  0.87500
+pre3 =  0.83019
+meanpre =  0.86617
+rec1 =  0.73626
+rec2 =  0.90909
+rec3 =  0.94624
+meanrec =  0.86386
+f1 =  0.80723
+f2 =  0.89172
+f3 =  0.88442
+meanf =  0.86112
+acc =  0.86207
+
+
 
 l = 15
 reducedQ =
@@ -322,6 +354,21 @@ confusionMatrix =
 correct =  232
 incorrect =  29
 accuracy =  0.88889
+
+pre1 =  0.91250
+pre2 =  0.89873
+pre3 =  0.86275
+meanpre =  0.89133
+rec1 =  0.80220
+rec2 =  0.92208
+rec3 =  0.94624
+meanrec =  0.89017
+f1 =  0.85380
+f2 =  0.91026
+f3 =  0.90256
+meanf =  0.88887
+acc =  0.88889
+
 
 
 
