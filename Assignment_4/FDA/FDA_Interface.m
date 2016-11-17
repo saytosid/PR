@@ -1,10 +1,11 @@
 function [] = FDA_Interface()
 
 	%%%%%%%%%%%%% enter path as argument %%%%%%%%%%%%%%%%%%
-	[TrainData , TestData] = datasets('LS_Group3/');  %Pass the relative path to the data sets(M .txt files denoting M classes), with a trailing '/'    
-
+	[TrainData , TestData] = datasets('rd_group3/');  %Pass the relative path to the data sets(M .txt files denoting M classes), with a trailing '/'    
+	clusters = 20
 	%%%%%%%%%%%% 1D data with maximum discrimination %%%%%%%%%%
-	FDA(TrainData , TestData);
+	FDA(TrainData , TestData,clusters);
+
 
 	
 

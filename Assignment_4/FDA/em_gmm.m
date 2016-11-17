@@ -42,8 +42,8 @@ likelihood_vals=zeros(1,iterMax);
 
 %% computer initial likelihood
 likelihood_vals(1)=likelihood(x,alpha,mu,sigma);
-fprintf(stderr,'%3d -- > %.6f\n', 1, likelihood_vals(1));
-figure,plot(1,likelihood_vals(1),'r.'),drawnow, hold on
+% fprintf(stderr,'%3d -- > %.6f\n', 1, likelihood_vals(1));
+% figure,plot(1,likelihood_vals(1),'r.'),drawnow, hold on
 prev = 10;
 for iter=2:iterMax
     
@@ -93,9 +93,9 @@ for iter=2:iterMax
     end
     prev = likelihood_vals(iter);
     fprintf('%3d -- > %.6f\n', iter, likelihood_vals(iter));
-    plot(iter,likelihood_vals(iter),'r.'),drawnow, hold on
+    % plot(iter,likelihood_vals(iter),'r.'),drawnow, hold on
 end
-title('likelihood'),drawnow, hold off
+% title('likelihood'),drawnow, hold off
 
 
 function val=gauss_val(x,mu,sigma)
