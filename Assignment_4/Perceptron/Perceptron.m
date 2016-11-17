@@ -23,7 +23,7 @@ function [] = Perceptron()
 	confusionmatrix
 
 	% plotting region
-   figure(4);
+   figure(5);
    pts = [0 0];
    for i = -10:0.9:30,
     for j = -20:0.9:20,
@@ -56,17 +56,24 @@ function [] = Perceptron()
    	Size = size(TrainData{i});
    	for j = 1:Size,
    		if i == 1,
-   			plot(TrainData{i}(j,1),TrainData{i}(j,2),'g','MarkerSize',9)
+   			p1 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'g','MarkerSize',9)
    			hold on;
    		end
    		if i == 2,
-   			plot(TrainData{i}(j,1),TrainData{i}(j,2),'b','MarkerSize',9)
+   			p2 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'b','MarkerSize',9)
    			hold on;
    		end
    		if i == 3,
-   			plot(TrainData{i}(j,1),TrainData{i}(j,2),'m','MarkerSize',9)
+   			p3 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'m','MarkerSize',9)
    			hold on;
    		end	
    	end	
-   end		
+   end
+
+  xlabel('X coordinate','FontSize',13);
+  ylabel('Y coordinate','FontSize',13);
+  title('Perceptron - Linearly Separable dataset','FontSize',13);
+  legend([p1,p2,p3],'Class1','Class2','Class3');
+  % print -djpg RD_4.jpg;
+  hold off;		
 end

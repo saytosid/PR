@@ -1,6 +1,6 @@
 function [reducedQ, reducedTrain , reducedTest] = getReducedDimensions(Q,l)
 
-	[TrainData , TestData] = datasets('LS_Group3/'); 
+	[TrainData , TestData] = datasets('rd_group3/'); 
 	numclasses = length(TrainData);
 	Mean = 0;
 	a = 0;

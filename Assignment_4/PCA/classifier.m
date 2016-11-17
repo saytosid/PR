@@ -17,7 +17,7 @@ disp('classifier starts ..');
 	[Mean,Cov,Pi] = GMM(X1,k);       
 	[MeanY,CovY,PiY] = GMM(Y1,k);
 	[MeanZ,CovZ,PiZ] = GMM(Z1,k);
-	figure(100);
+	% figure(100);
 	tc1 = 0;
 	tc2 = 0;
 	tc3 = 0;
@@ -48,21 +48,21 @@ disp('classifier starts ..');
 		G = [p,q,r];
 		g = max(G);
 		if (g == p),
-			plot(X(i,1),0,'g');
+			% plot(X(i,1),0,'g');
 			tc1 = tc1 + 1;
-			hold on;
+			% hold on;
 			end;			
 		if (g == q),
-			plot(X(i,1),0,'b');
+			% plot(X(i,1),0,'b');
 			tp2 = tp2 + 1;
 			t12 = t12 + 1;
-			hold on;
+			% hold on;
 		end;
 		if (g == r),
-			plot(X(i,1),0,'m');
+			% plot(X(i,1),0,'m');
 			tp3 = tp3 + 1;
 			t13 = t13 + 1;
-			hold on;
+			% hold on;
 		end;
 	end;		
 
@@ -84,21 +84,21 @@ disp('classifier starts ..');
 		G = [p,q,r];
 		g = max(G);
 		if (g == p),
-			plot(Y(i,1),0,'g');
+			% plot(Y(i,1),0,'g');
 			tp1 = tp1 + 1;
 			t21 = t21 + 1;
-			hold on;
+			% hold on;
 			end;			
 		if (g == q),
-			plot(Y(i,1),0,'b');
+			% plot(Y(i,1),0,'b');
 			tc2 = tc2 + 1;
-			hold on;
+			% hold on;
 		end;
 		if (g == r),
-			plot(Y(i,1),0,'m');
+			% plot(Y(i,1),0,'m');
 			tp3 = tp3 + 1;
 			t23 = t23 + 1;
-			hold on;
+			% hold on;
 		end;
 	end;
 
@@ -119,21 +119,21 @@ disp('classifier starts ..');
 		G = [p,q,r];
 		g = max(G);
 		if (g == p),
-			plot(Z(i,1),0,'g');
+			% plot(Z(i,1),0,'g');
 			tp1 = tp1 + 1;
 			t31 = t31 + 1;
-			hold on;
+			% hold on;
 			end;			
 		if (g == q),
-			plot(Z(i,1),0,'b');
+			% plot(Z(i,1),0,'b');
 			tp2 = tp2 + 1;
 			t32 = t32 + 1;
-			hold on;
+			% hold on;
 		end;
 		if (g == r),
-			plot(Z(i,1),0,'m');
+			% plot(Z(i,1),0,'m');
 			tc3 = tc3 + 1;
-			hold on;
+			% hold on;
 		end;
 	end;		
 
@@ -145,7 +145,7 @@ disp('classifier starts ..');
 	% plotting region
 	figure(203);
 	pts = [0];
-	for i = 0:5:2500,
+	for i = 0:50:2500,
 	  pts = [pts;i];
 	end;
 	for i = 1:length(pts);
@@ -164,87 +164,87 @@ disp('classifier starts ..');
 		 a = [p q r];
 		 a = max(a);
 		 if a == p,
-		    p1=plot(0,x(1),'y','MarkerSize',18);
+		    p1=plot(0,x(1),'y','MarkerSize',35);
 		      hold on;
 		      % ++tc1;
 		 end;     
 		 if a == q,
-		    plot(0,x(1),'c','MarkerSize',18);
+		    plot(0,x(1),'c','MarkerSize',35);
 		      hold on;
 		      % ++tp2;
 		  end;    
 		 if a == r,
-		    plot(0,x(1),'Color',[0.7 0.9 0.2],'MarkerSize',18);
+		    plot(0,x(1),'Color',[0.7 0.9 0.2],'MarkerSize',35);
 		      hold on;
 		      % ++tp2;
 		  end;
       
 	end;
 
-	%training data
-	% n = rows(X);
-	% m1 = floor(0.75 * n);
-	% for i = 1:m1,
-	%    x = [X(i,1)];
-	%    x = x';
-	%    p1=plot(x(1),0,'MarkerSize',8,'g');
-	%    hold on;
-	%  end;
+	% training data
+	n = rows(X);
+	m1 = floor(0.75 * n);
+	for i = 1:m1,
+	   x = [X(i,1)];
+	   x = x';
+	   p1=plot(0,x(1),'MarkerSize',23,'g');
+	   hold on;
+	 end;
 
-	%  n = rows(Y);
-	% m2 = floor(0.75 * n);
-	% for i = 1:m2,
-	%    x = [Y(i,1)];
-	%    x = x';
-	%    p2=plot(x(1),0,'MarkerSize',8,'b');
-	%    hold on;
-	%  end;
+	 n = rows(Y);
+	m2 = floor(0.75 * n);
+	for i = 1:m2,
+	   x = [Y(i,1)];
+	   x = x';
+	   p2=plot(0,x(1),'MarkerSize',23,'b');
+	   hold on;
+	 end;
 
-	%  n = rows(Z);
-	% m3 = floor(0.75 * n);
-	%  for i = 1:m3,
-	%    x = [Z(i,1)];
-	%    x = x';
-	%    p3=plot(x(1),0,'MarkerSize',8,'m');
-	%    hold on;
-	%  end;
+	 n = rows(Z);
+	m3 = floor(0.75 * n);
+	 for i = 1:m3,
+	   x = [Z(i,1)];
+	   x = x';
+	   p3=plot(0,x(1),'MarkerSize',23,'m');
+	   hold on;
+	 end;
 
 	% testing data
 	% figure(34);
-	n = rows(X);
-	m1 = floor(0.75 * n)+1;
-	for i = m1:n,
-	  x = [X(i,1)];
-	  x = x';
-	  p1=plot(0,x(1),'MarkerSize',8,'g');
-	  hold on;
-	end;
+	% n = rows(X);
+	% m1 = floor(0.75 * n)+1;
+	% for i = m1:n,
+	%   x = [X(i,1)];
+	%   x = x';
+	%   p1=plot(0,x(1),'MarkerSize',8,'g');
+	%   hold on;
+	% end;
 
-	n = rows(Y);
-	m2 = floor(0.75 * n)+1;
-	for i = m2:n,
-	  x = [Y(i,1)];
-	  x = x';
-	  p2=plot(0,x(1),'MarkerSize',8,'b');
-	  hold on;
-	end;
+	% n = rows(Y);
+	% m2 = floor(0.75 * n)+1;
+	% for i = m2:n,
+	%   x = [Y(i,1)];
+	%   x = x';
+	%   p2=plot(0,x(1),'MarkerSize',8,'b');
+	%   hold on;
+	% end;
 
-	n = rows(Z);
-	m3 = floor(0.75 * n)+1;
-	for i = m3:n,
-	  x = [Z(i,1)];
-	  x = x';
-	  p3=plot(0,x(1),'MarkerSize',8,'m');
-	  hold on;
-	end;
+	% n = rows(Z);
+	% m3 = floor(0.75 * n)+1;
+	% for i = m3:n,
+	%   x = [Z(i,1)];
+	%   x = x';
+	%   p3=plot(0,x(1),'MarkerSize',8,'m');
+	%   hold on;
+	% end;
 
 
-	% xlabel('X coordinate');
-	% ylabel('Y coordinate');
-	% title('Real Dataset(K = 4)');
-	% legend([p1,p2,p3],'Class1','Class2','Class3');
-	% % print -djpg RD_4.jpg;
-	% hold off;
+	xlabel('X coordinate','FontSize',20);
+	ylabel('Y coordinate','FontSize',20);
+	title('PCA - Real World dataset','FontSize',20);
+	legend([p1,p2,p3],'Class1','Class2','Class3');
+	% print -djpg RD_4.jpg;
+	hold off;
 
 
 % end;
