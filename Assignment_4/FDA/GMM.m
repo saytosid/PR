@@ -1,52 +1,42 @@
-function [Mean,Cov,Pi] = GMM(X,k)
+function [MeansC1_75,CovC1_75,PiC1_75] = GMM(TrainData,clusters)
+	K=clusters;
+	type='Interlock';
+	d=columns(TrainData);
+	C1_75 = TrainData;
+	sizeC1_75=size(C1_75);
+	
 
-	% disp('GMM Starts...\n');
-    [Mean,Cov,Pi] = kmeans(X,k);
-	n = rows(X);
-	d = columns(X);	
-	lfinal = likelihood(X,Mean,Cov,Pi);
-	lini = 0;
-	u = 1;
-	while (abs(lfinal - lini) > 0.001 && u <= 200)
-			% new means
-			u = u + 1;
-			Nk = zeros(k,1);
-			Gamma = zeros(n,k);
-			for i = 1:k,
-				a = zeros(1,d);
-				for j = 1:n,
-					Gamma(j,i) = responsibility(X(j,:),Pi,Mean,Cov,i,k);
-					%Gamma(j,i)
-					Nk(i,1) = Nk(i,1) + Gamma(j,i);				% new NKs'
-					a = a + Gamma(j,i) * X(j,:);				
-				end;
-				a = a/Nk(i,1);
-				Mean(i,:) = a(1,:);								
-			end;
+	% C1_75=C1(1:int16(0.75*(sizeC1(1,1))),:);
+	% sizeC1_75=size(C1_75);
+	% C1_25=C1(int16(0.75*(sizeC1(1,1)))+1:sizeC1(1,1),:);
+	% sizeC1_25=size(C1_25);
 
-			% new covariances
-			for i = 1:k,
-				Covk = zeros(d,d);
-				for j = 1:n,
-					Covk = Covk + Gamma(j,i) * (X(j,:) - Mean(i,:))' * (X(j,:) - Mean(i,:));
-				end;
-				Covk = Covk/Nk(i,1);
-				Cov(i) = Covk;
-			end;
+	% C2_75=C2(1:int16(0.75*(sizeC2(1,1))),:);
+	% sizeC2_75=size(C2_75);
+	% C2_25=C2(int16(0.75*(sizeC2(1,1)))+1:sizeC2(1,1),:);
+	% sizeC2_25=size(C2_25);
 
-			% new PI_ks'
-			for i = 1:k,
-				Pi(i,1) = Nk(i,1)/n;
-			end;
+	MeansC1_75=zeros(K,2);
 
-			lini = lfinal;
-			lfinal = likelihood(X,Mean,Cov,Pi);         %here
 
-			
-	end;	
-	% Mean
-	% Cov
-	% Pi
-	% 
+	for i=1:K
+		
+	    MeansC1_75(i,:)=C1_75(int16(sizeC1_75(1,1)*rand(1)),:);
 
-end;	
+	end
+
+	[MeansC1_75, CovC1_75,PiC1_75]=KMEANS(type,K,1,C1_75,MeansC1_75);
+
+	PiC1_75 = PiC1_75';
+	% [MeansC1_75,PiC1_75, CovC1_75]=INIT_PARAMS(type,K,d,1,sizeC1_75);
+
+
+
+	logLikeC1_75=LOGLIKECLUSTER(d,K,C1_75,PiC1_75,MeansC1_75,CovC1_75);
+
+
+
+	[PiC1_75,MeansC1_75,CovC1_75]=EM(d,K,C1_75,PiC1_75,MeansC1_75,CovC1_75,logLikeC1_75);
+
+
+end

@@ -6,9 +6,7 @@ function [] = FDA_Interface()
 	%%%%%%%%%%%% 1D data with maximum discrimination %%%%%%%%%%
 	FDA(TrainData , TestData);
 
-	%%%%%%%%%%%% classify data with GMM %%%%%%%%%%%%%%%%%
-	clusters = 1;
-	% classifier(reducedTrain , reducedTest , clusters); 
+	
 
 	%%%%%%%%%%%% plot the 1D data (plot boundary superposed with training data) %%%%%%%%%%%%%%%%%%%%%%%
 	% plotData(reducedTrain , reducedTest)

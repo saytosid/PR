@@ -20,7 +20,7 @@ function [reducedTrain,reducedTest] = FDA(TrainData , TestData)
 	end
 	
 
-	%%%%%%%%%%begin classification%%%%%%%%%%%%%
+	%%%%%%%%%%Build GMM%%%%%%%%%%%%%
 	ctr = 1;
 	for i = 1:length(TrainData)
 		for j = 1:length(TrainData)
@@ -32,7 +32,7 @@ function [reducedTrain,reducedTest] = FDA(TrainData , TestData)
 			end
 		end
 	end
-	
+	% GMM_{1}
 	% fprintf(stderr,"Begin Classification");
 	confusion_matrix = zeros(length(TestData),length(TestData));
 	ctr = 1;
@@ -48,7 +48,7 @@ function [reducedTrain,reducedTest] = FDA(TrainData , TestData)
 					if(i<j)
 						
 								X = X_orig*omegas{ctr};
-								g_x = log(g(X,GMM_{ctr}{1},clusters)) - log(g(X,GMM_{ctr}{2},clusters));
+								g_x = (g(X,GMM_{ctr}{1},clusters)) - (g(X,GMM_{ctr}{2},clusters));
 								TMDF(i,1) += abs(g_x);
 								TMDF(j,1) += abs(g_x);
 								if(g_x > 0)

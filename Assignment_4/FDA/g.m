@@ -7,10 +7,11 @@ function p = g(x_cr,param,k)
 	p = 0.00000000001;
 	% iscell(x_cr)
 	% x_cr
-	for o=1:k,
+	for o=1:k
 		% normpdf(x_cr , Mean(o,1) , Cov(o,1))
 		% Pi(o,1)
-		p = p + (Pi(o,1)*normpdf(x_cr , Mean(o,1) , Cov(o,1)));
+		% size(Mean)
+		p = p + (Pi(1,o)*normpdf(x_cr , Mean(o,1) , Cov(:,:,o)));
 	
 	end;
 end;	
