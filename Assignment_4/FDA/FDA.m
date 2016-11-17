@@ -1,6 +1,6 @@
 function [reducedTrain,reducedTest] = FDA(TrainData , TestData)
 	%One-against-one approach = 6 FDAs for 3 class problem
-	clusters = 1;
+	clusters = 1
 
 	omegas = cell(length(TrainData)*(length(TrainData)-1),1); %Omegas{i} = direction of projection for ith FDA	
 	reducedTrain = cell(length(TrainData)*(length(TrainData)-1),1);
@@ -18,16 +18,17 @@ function [reducedTrain,reducedTest] = FDA(TrainData , TestData)
 			end
 		end
 	end
-	
-
+	% size(reducedTrain{1}{1})
+	% x = reducedTrain{2}{2};
+	% em_gmm(x,clusters);
 	%%%%%%%%%%Build GMM%%%%%%%%%%%%%
 	ctr = 1;
 	for i = 1:length(TrainData)
 		for j = 1:length(TrainData)
 			if(i!=j)
-				[GMM_{ctr}{1}{1} GMM_{ctr}{1}{2} GMM_{ctr}{1}{3}] = GMM(reducedTrain{ctr}{1},clusters); %reducedTrain{ctr} is the data of classi and classj reduced to 1-d
+				[GMM_{ctr}{1}{1} GMM_{ctr}{1}{2} GMM_{ctr}{1}{3}] = em_gmm(reducedTrain{ctr}{1},clusters); %reducedTrain{ctr} is the data of classi and classj reduced to 1-d
 				%GMM{ctr}{1} has the params of GMM for class1 of ctr(th) GMM classifier
-				[GMM_{ctr}{2}{1} GMM_{ctr}{2}{2} GMM_{ctr}{2}{3}] = GMM(reducedTrain{ctr}{2},clusters);
+				[GMM_{ctr}{2}{1} GMM_{ctr}{2}{2} GMM_{ctr}{2}{3}] = em_gmm(reducedTrain{ctr}{2},clusters);
 				ctr += 1;
 			end
 		end
@@ -69,7 +70,10 @@ function [reducedTrain,reducedTest] = FDA(TrainData , TestData)
 			count = sum(votes(:) == max(votes));
 			if(count>1)
 				%check TMDF
+				prevLabel = predicted_label
 				[a,predicted_label] = max(TMDF);
+				newLabel = predicted_label
+
 			end
 			confusion_matrix(actual_label,predicted_label) += 1;
 		end

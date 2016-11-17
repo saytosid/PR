@@ -1,8 +1,11 @@
 function [PINew,MeansNew,CovNew]=EM(d,K,ClassData,PI,Means,Cov,LogLike)
 
 sizeClass=size(ClassData);
+iter = 1;
 while(1)
     gamma=zeros(sizeClass(1,1), K);
+    fprintf(stderr,"Iteration %d ",iter);
+    iter = iter+1;
     for i=1:sizeClass
         t=0;
         for j=1:K
@@ -33,7 +36,9 @@ while(1)
         CovNew(:,:,i)=CovNew(:,:,i)/sum(gamma(:,i));
     end
     LogLikeNew=LOGLIKECLUSTER(d,K,ClassData,PINew,MeansNew,CovNew);
-    if abs(LogLikeNew-LogLike)<0.001
+    delta = abs(LogLikeNew-LogLike);
+    fprintf(stderr,"\tDiff = %f\n ",delta);
+    if delta<0.001
         break;
     else
         PI=PINew;
@@ -42,12 +47,3 @@ while(1)
         LogLike=LogLikeNew;
     end
 end
-
-
-
-
-
-
-
-
-

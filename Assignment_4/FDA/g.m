@@ -4,7 +4,7 @@ function p = g(x_cr,param,k)
 	Cov = param{2};
 	Pi = param{3};
 
-	p = 0.00000000001;
+	p = 0.000000000000000000001;
 	% iscell(x_cr)
 	% x_cr
 	for o=1:k
@@ -14,4 +14,5 @@ function p = g(x_cr,param,k)
 		p = p + (Pi(1,o)*normpdf(x_cr , Mean(o,1) , Cov(:,:,o)));
 	
 	end;
+	p = log(p);
 end;	

@@ -20,7 +20,7 @@ function [MeansC1_75,CovC1_75,PiC1_75] = GMM(TrainData,clusters)
 
 
 	for i=1:K
-		
+
 	    MeansC1_75(i,:)=C1_75(int16(sizeC1_75(1,1)*rand(1)),:);
 
 	end
