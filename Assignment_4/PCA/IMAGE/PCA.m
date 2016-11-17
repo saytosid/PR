@@ -13,6 +13,6 @@ function [] = PCA(Q,l)  %%%%% l : reduced no of dimensions
 
 	% confusionmatrix = classify(reducedTest,Mean,Cov,reducedTrain) 
    
-   	classifier(reducedTrain, reducedTest, l);
+   	classifier(reducedTrain, reducedTest, 4);
 
 end
