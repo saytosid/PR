@@ -57,7 +57,7 @@ class TestData:
 			self.dataset.append(np.array(map(float,line.split())))
 			self.actuallabel.append(actuallabel)
 
-def plot(filename):
+def plot(filename,dim,kern,c_val):
 	is1d = False
 	for i in range(len(train.dataset)):
 		pt = train.dataset[i]
@@ -83,7 +83,7 @@ def plot(filename):
 	plt.legend(handles=legend_handles)
 	
 	plt.title("SVM for C = "+str(c_val))
-	plt.savefig(filename+"c="+str(c_val)+kern+"pca="+str(deg)+".png")
+	plt.savefig(filename+"c="+str(c_val)+kern+"pca="+str(dim)+".png")
 	plt.show()
 
 
@@ -111,7 +111,7 @@ print "Enter the value of C for SVM"
 c_val = int(raw_input())
 
 print "Enter the kernel type for SVM('linear','poly','rbf','sigmoid')"
-kern = (raw_input())
+kern = (raw_input().strip())
 deg = int(0)
 if kern=="poly":
 	print "Enter Degree for poly kernel"
@@ -150,5 +150,6 @@ for i in range(num_classes):
 acc /= float(total_test_data)
 print "Accuracy = ",acc
 filename = files_train[1][0:4]
-plot("svm"+filename)
+if(len(train.dataset[0])<3):
+	plot("svm"+filename,dim,kern,c_val)
 
