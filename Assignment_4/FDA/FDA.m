@@ -77,7 +77,7 @@ function [reducedTrain,reducedTest] = FDA(TrainData , TestData,clusters)
 
 	figure(218);
 	pts = [0 0];
-	for i = -10:0.8:310,
+	for i = -10:0.8:30,
 		for j = -20:0.8:20,
 	  		pts = [pts;i j];
 	  	end;	
