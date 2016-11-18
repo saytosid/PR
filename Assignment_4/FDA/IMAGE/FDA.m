@@ -70,13 +70,14 @@ function [reducedTrain,reducedTest] = FDA(TrainData , TestData,clusters)
 			end
 
 			confusion_matrix(actual_label,predicted_label) += 1;
+			confusion_matrix./36;
 		
 		
 		end
 	end
 
 	confusion_matrix
-	acc = sum(diag(confusion_matrix))/(length(TestData{1})+length(TestData{2})+length(TestData{3}))
+	acc = sum(diag(confusion_matrix))/((length(TestData{1})+length(TestData{2})+length(TestData{3})/36))
 	 
 
 end
