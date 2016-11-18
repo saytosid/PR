@@ -1,4 +1,4 @@
-function [] = classifier(X,Y,Z,k)
+function [] = classifier(X,Y,Z,k,P,Q,R)
 
 disp('classifier starts ..');
 
@@ -143,16 +143,18 @@ disp('classifier starts ..');
 	a = [tc1 t12 t13;t21 tc2 t23;t31 t32 tc3]
 	
 	% plotting region
-	figure(203);
-	pts = [0];
+	figure(204);
+	pts = [0 0];
 	for i = 0:50:2500,
-	  pts = [pts;i];
+		for j = 0:50:2500,
+	  		pts = [pts;i j];
+	  	end;	
 	end;
 	for i = 1:length(pts);
 		p = 0;
 		q = 0;
 		r = 0;
-		x = [pts(i,1)];
+		x = [pts(i,1) pts(i,2)]';
 		for j=1:k,
 			p = p + Pi(j,1) * normal(x(1,:) , Mean(j,:) , Cov(:,:,j));
 			q = q + PiY(j,1) * normal(x(1,:) , MeanY(j,:) , CovY(:,:,j));
@@ -164,17 +166,17 @@ disp('classifier starts ..');
 		 a = [p q r];
 		 a = max(a);
 		 if a == p,
-		    p1=plot(0,x(1),'y','MarkerSize',35);
+		    p1=plot(x(2),x(1),'y','MarkerSize',20);
 		      hold on;
 		      % ++tc1;
 		 end;     
 		 if a == q,
-		    plot(0,x(1),'c','MarkerSize',35);
+		    plot(x(2),x(1),'c','MarkerSize',20);
 		      hold on;
 		      % ++tp2;
 		  end;    
 		 if a == r,
-		    plot(0,x(1),'Color',[0.7 0.9 0.2],'MarkerSize',35);
+		    plot(x(2),x(1),'Color',[0.7 0.9 0.2],'MarkerSize',20);
 		      hold on;
 		      % ++tp2;
 		  end;
@@ -182,30 +184,33 @@ disp('classifier starts ..');
 	end;
 
 	% training data
-	n = rows(X);
+	X = P;
+	n = rows(P);
 	m1 = floor(0.75 * n);
 	for i = 1:m1,
-	   x = [X(i,1)];
+	   x = [X(i,1) , X(i,2)];
 	   x = x';
-	   p1=plot(0,x(1),'MarkerSize',23,'g');
+	   p1=plot(x(1,1),x(2,1),'MarkerSize',15,'g');
 	   hold on;
 	 end;
 
-	 n = rows(Y);
+	 Y = Q;
+	 n = rows(Q);
 	m2 = floor(0.75 * n);
 	for i = 1:m2,
-	   x = [Y(i,1)];
+	   x = [Y(i,1) Y(i,2)];
 	   x = x';
-	   p2=plot(0,x(1),'MarkerSize',23,'b');
+	   p2=plot(x(1,1),x(2,1),'MarkerSize',15,'b');
 	   hold on;
 	 end;
 
-	 n = rows(Z);
+	 Z = R;
+	 n = rows(R);
 	m3 = floor(0.75 * n);
 	 for i = 1:m3,
-	   x = [Z(i,1)];
+	   x = [Z(i,1) , Z(i,2)];
 	   x = x';
-	   p3=plot(0,x(1),'MarkerSize',23,'m');
+	   p3=plot(x(1,1),x(2,1),'MarkerSize',15,'m');
 	   hold on;
 	 end;
 
@@ -239,9 +244,9 @@ disp('classifier starts ..');
 	% end;
 
 
-	xlabel('X coordinate','FontSize',20);
-	ylabel('Y coordinate','FontSize',20);
-	title('PCA - Real World dataset','FontSize',20);
+	xlabel('X coordinate','FontSize',10);
+	ylabel('Y coordinate','FontSize',10);
+	title('PCA - Real World dataset','FontSize',10);
 	legend([p1,p2,p3],'Class1','Class2','Class3');
 	% print -djpg RD_4.jpg;
 	hold off;

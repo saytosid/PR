@@ -1,4 +1,4 @@
-function [reducedQ, reducedTrain , reducedTest] = getReducedDimensions(Q,l)
+function [reducedQ, reducedTrain , reducedTest , TrainData , TestData] = getReducedDimensions(Q,l)
 
 	[TrainData , TestData] = datasets('rd_group3/'); 
 	numclasses = length(TrainData);
