@@ -11,38 +11,38 @@ function [train test] = datasets_image( dir1, dir2, dir3 )
     for i = 1:trainnum1
         fileName = Files1(i).name;
         inputData = load([dir1, fileName]);
-        trainData{1}{i} = inputData(:,:);
+        trainData{1} = [trainData{1};inputData(:,:)];
     end
 	
     
     for i = 1:trainnum2
         fileName = Files2(i).name;
         inputData = load([dir2, fileName]);
-        trainData{2}{i} = inputData(:,:);
+        trainData{2} = [trainData{2};inputData(:,:)];
     end
     
     for i = 1:trainnum3
         fileName = Files3(i).name;
         inputData = load([dir3, fileName]);
-        trainData{3}{i} = inputData(:,:);
+        trainData{3} = [trainData{3};inputData(:,:)];
     end
     
     for i = trainnum1+1:length(Files1)
         fileName = Files1(i).name;
         inputData = load([dir1, fileName]);
-        testData{1}{i-trainnum1} = inputData(:,:);
+        testData{1} = [testData{1};inputData(:,:)];
     end
     
     for i = trainnum2+1:length(Files2)
         fileName = Files2(i).name;
         inputData = load([dir2, fileName]);
-        testData{2}{i-trainnum2} = inputData(:,:);
+        testData{2} = [testData{2};inputData(:,:)];
     end
     
     for i = trainnum3+1:length(Files3)
         fileName = Files3(i).name;
         inputData = load([dir3, fileName]);
-        testData{3}{i-trainnum3} = inputData(:,:);
+        testData{3} = [testData{3};inputData(:,:)];
     end
     train = trainData;
     test = testData;
