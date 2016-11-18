@@ -1,6 +1,6 @@
 function [] = PCA(Q,l)  %%%%% l : reduced no of dimensions
 
-	[reducedQ , reducedTrain , reducedTest] = getReducedDimensions(Q,l);
+	[reducedQ , reducedTrain , reducedTest , TrainData , TestData] = getReducedDimensions(Q,l);
 	% reducedTrain
 	numclasses = length(reducedTrain);
 	Mean = cell(1,numclasses);
@@ -12,6 +12,11 @@ function [] = PCA(Q,l)  %%%%% l : reduced no of dimensions
 		Cov{i} = cov(flattenedTrain);	
 	end
 
+	X = vertcat(TrainData{1}(:,:));
+	Y = vertcat(TrainData{2}(:,:));
+	Z = vertcat(TrainData{3}(:,:));
+	
+
 	flattened = vertcat(reducedTrain{1}(:,:));
 	flattened = vertcat(flattened,reducedTest{1}(:,:));
 	size(flattened)
@@ -21,7 +26,9 @@ function [] = PCA(Q,l)  %%%%% l : reduced no of dimensions
 	flattened2 = vertcat(reducedTrain{3}(:,:));
 	flattened2 = vertcat(flattened2,reducedTest{3}(:,:));
 	size(flattened2)
-	classifier(flattened,flattened1,flattened2,1);
+	classifier(flattened,flattened1,flattened2,1,X,Y,Z);
+	
+
 	
 
 	% for i = 1:numclasses,
