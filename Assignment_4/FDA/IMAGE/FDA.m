@@ -14,7 +14,7 @@ function [reducedTrain,reducedTest] = FDA(TrainData , TestData,clusters)
 			end
 		end
 	end
-
+	% size(RestTrain{3})
 	
 	for i = 1:length(TrainData)
 		
