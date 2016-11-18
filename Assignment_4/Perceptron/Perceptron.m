@@ -56,15 +56,15 @@ function [] = Perceptron()
    	Size = size(TrainData{i});
    	for j = 1:Size,
    		if i == 1,
-   			p1 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'g','MarkerSize',9)
+   			p1 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'g','MarkerSize',9);
    			hold on;
    		end
    		if i == 2,
-   			p2 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'b','MarkerSize',9)
+   			p2 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'b','MarkerSize',9);
    			hold on;
    		end
    		if i == 3,
-   			p3 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'m','MarkerSize',9)
+   			p3 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'m','MarkerSize',9);
    			hold on;
    		end	
    	end	
