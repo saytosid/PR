@@ -57,7 +57,7 @@ class TestData:
 			self.dataset.append(np.array(map(float,line.split())))
 			self.actuallabel.append(actuallabel)
 
-def plot(filename,dim,kern,c_val):
+def plot(filename,deg,dim,kern,c_val):
 	is1d = False
 	for i in range(len(train.dataset)):
 		pt = train.dataset[i]
@@ -82,8 +82,8 @@ def plot(filename,dim,kern,c_val):
 		legend_handles.append(mpatches.Patch(color=classTrainingColor[classlabel], label=("Class "+str(classlabel))))
 	plt.legend(handles=legend_handles)
 	
-	plt.title("SVM for C = "+str(c_val)+" Kernel = "+kern+" Dataset = "+filename[3:])
-	plt.savefig(filename+"c="+str(c_val)+kern+"pca="+str(dim)+".png")
+	plt.title("SVM for C = "+str(c_val)+" Kernel = "+kern+str(deg)+" Dataset = "+filename[3:])
+	plt.savefig(filename+"c="+str(c_val)+kern+str(deg)+"pca="+str(dim)+".png")
 	plt.show()
 
 
@@ -151,6 +151,19 @@ for i in range(num_classes):
 acc /= float(total_test_data)
 print "Accuracy = ",acc
 filename = files_train[1][0:4]
+
+##########output file##############
+with open("OUTPUTS"+filename,"a") as file:
+	print >>file, "*********Confusion Matrix*********\n", confusion_matrix,"\n**********************************\n"
+	# for i in range(num_classes):
+	total_test_data = len(test.dataset)
+	acc=float(0)
+	for i in range(num_classes):
+		acc += confusion_matrix[i][i]
+	acc /= float(total_test_data)
+	print >>file, "Accuracy = ",acc
+	print >>file, "SVM for C = "+str(c_val)+" Kernel = "+kern+str(deg)+" Dataset = "+filename
+	print >>file, "\n\n__________________________________________________________________________________________________\n\n"
 if(len(train.dataset[0])<3):
-	plot("svm"+filename,dim,kern,c_val)
+	plot("svm"+filename,deg,dim,kern,c_val)
 
