@@ -1,7 +1,6 @@
 function [] = FDA_Interface()
 
 	%%%%%%%%%%%%% enter path as argument %%%%%%%%%%%%%%%%%%
-	clusters = 50
 	[TrainData , TestData] = datasets_image('coast/','mountain/','insidecity/');  %Pass the relative path to the data sets(M .txt files denoting M classes), with a trailing '/'    
 	% size(TrainData{1})
 	%%%%%%%%%%%% 1D data with maximum discrimination %%%%%%%%%%
