@@ -23,7 +23,8 @@ function [] = Perceptron()
 	confusionmatrix
 
 	% plotting region
-   figure(5);
+   i = 7;
+   figure(i);
    pts = [0 0];
    for i = -10:0.9:30,
     for j = -20:0.9:20,
@@ -38,15 +39,15 @@ function [] = Perceptron()
      	output(k,1) = a{1}{k}'*z;		
 	 end
      [x,classlabel] = max(output);
+     % if classlabel==1,
+     %    p1=plot(z(2,1),z(3,1),'y','MarkerSize',10);
+     %      hold on;
+     % end;     
      if classlabel==1,
-        p1=plot(z(2,1),z(3,1),'y','MarkerSize',10);
-          hold on;
-     end;     
-     if classlabel==2,
         plot(z(2,1),z(3,1),'c','MarkerSize',10);
           hold on;
       end;    
-      if classlabel==3,
+      if classlabel==2,
         plot(z(2,1),z(3,1),'Color',[0.7 0.9 0.2],'MarkerSize',10);
           hold on;
      end;     
@@ -55,25 +56,25 @@ function [] = Perceptron()
    for i = 1:numclasses,
    	Size = size(TrainData{i});
    	for j = 1:Size,
+   		% if i == 1,
+   		% 	p1 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'g','MarkerSize',9);
+   		% 	hold on;
+   		% end
    		if i == 1,
-   			p1 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'g','MarkerSize',9);
-   			hold on;
-   		end
-   		if i == 2,
    			p2 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'b','MarkerSize',9);
    			hold on;
    		end
-   		if i == 3,
+   		if i == 2,
    			p3 = plot(TrainData{i}(j,1),TrainData{i}(j,2),'m','MarkerSize',9);
    			hold on;
    		end	
    	end	
    end
 
-  xlabel('X coordinate','FontSize',13);
+  xlabel('Number of Iterations','FontSize',13);
   ylabel('Y coordinate','FontSize',13);
-  title('Perceptron - Linearly Separable dataset','FontSize',13);
-  legend([p1,p2,p3],'Class1','Class2','Class3');
-  % print -djpg RD_4.jpg;
+  title('Perceptron - Linearly Separable dataset, iteration number = 100','FontSize',13);
+  legend([p2 p3],'Class2','Class3');
+  print -djpg LS_100.jpg;
   hold off;		
 end

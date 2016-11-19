@@ -108,7 +108,7 @@ for i in xrange(2,1+num_classes):
 	test.append(files_test[i],i)
 
 print "Enter the value of C for SVM"
-c_val = int(raw_input())
+c_val = float(raw_input())
 
 print "Enter the kernel type for SVM('linear','poly','rbf','sigmoid')"
 kern = (raw_input().strip())
