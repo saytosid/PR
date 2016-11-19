@@ -12,9 +12,9 @@ classBGColor[3] = '#5DADE2'
 classBGColor[4] = '#58D68D'
 
 classTrainingColor = {}
-classTrainingColor[1] = '#641E16'
-classTrainingColor[2] = '#5B2C6F'
-classTrainingColor[3] = '#154360'
+classTrainingColor[1] = '#17202A'
+classTrainingColor[2] = '#E74C3C'
+classTrainingColor[3] = '#F1C40F'
 classTrainingColor[4] = '#186A3B'
 
 class TrainData:
@@ -82,7 +82,7 @@ def plot(filename,dim,kern,c_val):
 		legend_handles.append(mpatches.Patch(color=classTrainingColor[classlabel], label=("Class "+str(classlabel))))
 	plt.legend(handles=legend_handles)
 	
-	plt.title("SVM for C = "+str(c_val))
+	plt.title("SVM for C = "+str(c_val)+" Kernel = "+kern+" Dataset = "+filename[3:])
 	plt.savefig(filename+"c="+str(c_val)+kern+"pca="+str(dim)+".png")
 	plt.show()
 
