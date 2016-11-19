@@ -4,7 +4,7 @@ import matplotlib.patches as mpatches
 from matplotlib import style
 style.use("ggplot")
 from sklearn import svm,decomposition
-
+from sklearn.neural_network import MLPClassifier
 classBGColor = {}
 classBGColor[1] = '#EC7063'
 classBGColor[2] = '#A569BD'
@@ -12,9 +12,9 @@ classBGColor[3] = '#5DADE2'
 classBGColor[4] = '#58D68D'
 
 classTrainingColor = {}
-classTrainingColor[1] = '#641E16'
-classTrainingColor[2] = '#5B2C6F'
-classTrainingColor[3] = '#154360'
+classTrainingColor[1] = '#17202A'
+classTrainingColor[2] = '#E74C3C'
+classTrainingColor[3] = '#F1C40F'
 classTrainingColor[4] = '#186A3B'
 
 class TrainData:
@@ -30,7 +30,7 @@ class TrainData:
 		for line in lines:
 			self.dataset.append(np.array(map(float,line.split())))
 			self.classlabel.append(classlabel)
-		self.dimension = len(self.dataset[0])
+		
 
 	def append(self,filename,classlabel):
 		with open(filename) as file:
@@ -48,7 +48,7 @@ class TestData:
 		for line in lines:
 			self.dataset.append(np.array(map(float,line.split())))
 			self.actuallabel.append(actuallabel)
-		self.dimension = len(self.dataset[0])
+		
 
 	def append(self,filename,actuallabel):
 		with open(filename) as file:
@@ -82,7 +82,7 @@ def plot(filename,dim,kern,c_val):
 		legend_handles.append(mpatches.Patch(color=classTrainingColor[classlabel], label=("Class "+str(classlabel))))
 	plt.legend(handles=legend_handles)
 	
-	plt.title("SVM for C = "+str(c_val))
+	plt.title("SVM for C = "+str(c_val)+" Kernel = "+kern+" Dataset = "+filename[3:])
 	plt.savefig(filename+"c="+str(c_val)+kern+"pca="+str(dim)+".png")
 	plt.show()
 
@@ -123,6 +123,7 @@ assert(dim<len(train.dataset[0]))
 ##########PCA###################
 if(dim>0):
 	pca = decomposition.PCA(n_components=dim)
+	print pca
 	pca.fit(train.dataset)
 	train.dataset = pca.transform(train.dataset)
 	test.dataset = pca.transform(test.dataset)
@@ -131,7 +132,7 @@ if(dim>0):
 print "New Dimension = ",len(train.dataset[0])
 
 #########CLASSIFIER#############
-
+# clf = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(100,50), random_state=1)
 clf = svm.SVC(C=c_val,kernel=kern,degree = deg)
 print clf.fit(train.dataset,train.classlabel)
 predictedlabels = clf.predict(test.dataset)
