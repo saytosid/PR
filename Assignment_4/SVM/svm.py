@@ -162,7 +162,7 @@ with open("OUTPUTS"+filename,"a") as file:
 		acc += confusion_matrix[i][i]
 	acc /= float(total_test_data)
 	print >>file, "Accuracy = ",acc
-	print >>file, "SVM for C = "+str(c_val)+" Kernel = "+kern+str(deg)+" Dataset = "+filename
+	print >>file, "SVM for C = "+str(c_val)+" Kernel = "+kern+str(deg)+" Dataset = "+filename+" PCA= "+str(dim)
 	print >>file, "\n\n__________________________________________________________________________________________________\n\n"
 if(len(train.dataset[0])<3):
 	plot("svm"+filename,deg,dim,kern,c_val)
